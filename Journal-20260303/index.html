@@ -22,33 +22,20 @@
     var CONFIG = {"hostname":"la-pluma.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":{"enable":true,"caption":false},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="NJU-CourseNote: Principles and Techniques of Compilers - Ch03 Lexical Analysis.">
+  <meta name="description" content="算是对4-2的规划和本科生涯的总结吧(大概x.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="课程笔记-NJU编译原理 Ch3 词法分析">
-<meta property="og:url" content="http://la-pluma.github.io/Course-Compiler-3/index.html">
+<meta property="og:title" content="20260303一点碎碎念">
+<meta property="og:url" content="http://la-pluma.github.io/Journal-20260303/index.html">
 <meta property="og:site_name" content="LaPluma">
-<meta property="og:description" content="NJU-CourseNote: Principles and Techniques of Compilers - Ch03 Lexical Analysis.">
+<meta property="og:description" content="算是对4-2的规划和本科生涯的总结吧(大概x.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-1.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-2.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-3.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-4.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-5.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-6.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-7.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-8.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-9.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-10.png">
-<meta property="og:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-11.png">
-<meta property="article:published_time" content="2025-02-17T07:28:11.000Z">
-<meta property="article:modified_time" content="2025-05-28T15:20:08.850Z">
+<meta property="article:published_time" content="2026-03-04T16:11:21.000Z">
+<meta property="article:modified_time" content="2026-03-04T16:43:15.140Z">
 <meta property="article:author" content="LaPluma">
-<meta property="article:tag" content="课程笔记">
-<meta property="article:tag" content="编译原理">
+<meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://la-pluma.github.io/Course-Compiler-3/pic3-1.png">
 
-<link rel="canonical" href="http://la-pluma.github.io/Course-Compiler-3/">
+<link rel="canonical" href="http://la-pluma.github.io/Journal-20260303/">
 
 
 <script id="page-configurations">
@@ -61,7 +48,7 @@
   };
 </script>
 
-  <title>课程笔记-NJU编译原理 Ch3 词法分析 | LaPluma</title>
+  <title>20260303一点碎碎念 | LaPluma</title>
   
 
 
@@ -215,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://la-pluma.github.io/Course-Compiler-3/">
+    <link itemprop="mainEntityOfPage" href="http://la-pluma.github.io/Journal-20260303/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hikari_tairitsu/avatar.jpg">
@@ -228,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          课程笔记-NJU编译原理 Ch3 词法分析
+          20260303一点碎碎念
         </h1>
 
         <div class="post-meta">
@@ -237,23 +224,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2025-02-17 15:28:11" itemprop="dateCreated datePublished" datetime="2025-02-17T15:28:11+08:00">2025-02-17</time>
+              <time title="创建时间：2026-03-05 00:11:21 / 修改时间：00:43:15" itemprop="dateCreated datePublished" datetime="2026-03-05T00:11:21+08:00">2026-03-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-28 23:20:08" itemprop="dateModified" datetime="2025-05-28T23:20:08+08:00">2025-05-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">课程笔记-编译原理</span></a>
+                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a>
                 </span>
             </span>
 
@@ -270,14 +251,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>815</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -289,256 +270,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch03
-Lexical Analysis.</strong></p>
+        <p><strong>算是对4-2的规划和本科生涯的总结吧(大概x.</strong></p>
 <span id="more"></span>
-<h2 id="词法分析器的作用">词法分析器的作用</h2>
+<p>嗯...首先恭喜自己获得了offer, 然后理所当然的摆了接近半年(x.</p>
+<p>一路走来其实是有不少遗憾的, 想找借口也有很多, 比如新冠降智啦,
+某带专周所周知的课程设计啦, 总是忍不住出勤啦(awmc)什么的.
+但归根结底还是自己的问题, 能力和沉淀都不够,
+最后的结果也是咎由自取罢了.</p>
+<p>不过好在运气不错, 也算是即将结束自己的读书生涯,
+成为平凡社畜的一员打赛博螺丝了. 想即此多少有点感伤, 大学是有时间没钱,
+以后就要有钱没时间咯<del>(也可能是又没时间又没钱)</del></p>
+<p>事已至此, 拷打曾经的自己也是无济于事了. 该想想迫在眉睫的事情了,
+比如说毕业论文导师<del>(学院没有双选表, 没有兜底分配是什么鬼啊,
+纯纯草台班子, 两百个学生几十个导师我怎么知道哪些导师还有名额
+/续标识)</del>, 论文开题和做实验写论文,
+现在感觉大概率要做AI相关的学术垃圾, 但还锝先学基础知识, 真是头疼,
+为什么不能搞毕设毕业啊喂! (没招了投降了, 凑带专你赢了)</p>
+<p>哎哎纯发牢骚, 就业相关的基础也不扎实, 还要抽空学数据库, 学开发框架,
+形成记录文档, 自己想做的事情还要好多, 哎哎.
+总之简单列举一下自己想做的事情好了.</p>
+<h3 id="短期计划">短期计划</h3>
 <ul>
-<li>读入字符流，组成词素，输出<strong>词法单元</strong>序列</li>
-<li>过滤空白、换行、制表符、注释等</li>
-<li>将词素添加到符号表中</li>
-<li>在逻辑上独立于语法分析，但是通常和语法分析器处于同一趟(pass)中</li>
+<li>确定毕业论文导师和开题选项</li>
 </ul>
-<img src="/Course-Compiler-3/pic3-1.png" class="" title="pic3-1">
-<h3 id="独立词法分析器设置原因">独立词法分析器设置原因</h3>
+<h3 id="学期计划">学期计划</h3>
 <ul>
-<li>简化编译器的设计
-<ul>
-<li>词法分析器可以首先完成一些简单的处理工作</li>
-</ul></li>
-<li>提高编译器效率
-<ul>
-<li>相对于语法分析，词法分析过程简单，可高效实现(<strong>下推自动机PDA</strong>&amp;<strong>有穷自动机DFA</strong>)</li>
-</ul></li>
-<li>增强编译器的可移植性</li>
+<li>恶补机器学习基础知识</li>
+<li>学习数据库</li>
+<li>学习开发框架(可选)</li>
+<li>毕业论文相关工作(阅读论文, coding实验, 论文编写)</li>
+<li>完成一些简单的项目(半年没怎么碰代码了, 需要找回手感)</li>
 </ul>
-<h2 id="名词定义符号规约">名词定义&amp;符号规约</h2>
-<blockquote>
-<p><strong>Tips:</strong>
-该部分涉及大量<strong>形式语言与自动机(FLA)</strong>的内容,
-笔者在此给出一个参考笔记<a
-target="_blank" rel="noopener" href="https://fla.cuijiacai.com/"><strong>[崔家才|形式语言与自动机]</strong></a></p>
-</blockquote>
-<h3 id="名词定义">名词定义</h3>
+<h3
+id="学期课余计划希望至少能做一点吧">学期课余计划(希望至少能做一点吧)</h3>
 <ul>
-<li><strong>词法单元(token)</strong>
-<ul>
-<li><code>&lt;词法单元名, 属性值(可选) &gt;</code></li>
-<li>单元名是表示词法单位种类的抽象符号，语法分析器通过单元名即可确定词法单元序列的结构</li>
-<li>属性值通常用于语义分析之后的阶段</li>
-</ul></li>
-<li><strong>模式(pattern)</strong>
-<ul>
-<li>描述了一类词法单元的词素可能具有的形式</li>
-</ul></li>
-<li><strong>词素(lexeme)</strong>
-<ul>
-<li>源程序中的字符序列</li>
-<li>它和某个词法单元的模式匹配，被词法分析器识别为该词法单元的实例</li>
-</ul></li>
+<li>手绘学习提上日程, 鸽了好久的百张临摹无论如何也要启动了</li>
+<li>重部署qq bot, 更新napcat和astrbot框架, 理解并记录框架结构,
+如有条件重构astr框架</li>
+<li>阅读书籍, 至少把手上的四本书看完</li>
+<li>部署手上的树莓派, 作为toy
+backend为云服务器提供简单的算力支持(还需要重修计网来完成桥接)</li>
+<li>学习舞萌dx自制, 小目标是写三张谱(感觉大概率是官谱高级抄手)</li>
 </ul>
-<blockquote>
-<p><strong>Additional:</strong></p>
-<img src="/Course-Compiler-3/pic3-2.png" class="" title="pic3-2">
-<p>上面的定义稍显晦涩, 不妨结合例子来看.</p>
-<p>不恰当的比喻来说, 词法单元是<strong>类型名</strong>,
-模式是<strong>类型特征</strong>, 词素是<strong>具体实例</strong>.
-即<code>猫 : 头顶有耳朵, 有尾巴的四足覆毛生物(非严谨) : 布偶猫</code>.</p>
-</blockquote>
-<h4 id="词法单元的属性">词法单元的属性</h4>
+<h3 id="可能是存在于幻想中的计划">可能是存在于幻想中的计划</h3>
 <ul>
-<li>一个模式匹配多个词素时，必须通过属性来传递附加的信息
-<ul>
-<li>属性值将被用于语义分析、代码生成等阶段</li>
-</ul></li>
-<li>不同的目的需要不同的属性
-<ul>
-<li>属性值通常是一个结构化数据</li>
-</ul></li>
-<li>如词法单元id的属性
-<ul>
-<li>词素、类型、第一次出现的位置</li>
-</ul></li>
+<li>学习游戏开发, 复现一些简单的经典游戏, 起草处女作策划案</li>
+<li>重构迁移博客和个人网站(hexo在当下感觉稍微有点不方便了,
+速度较慢且功能不够丰富, 不过说到底还是自己菜了没办法开发x),
+迁移后可以做一点神秘小网站</li>
+<li>学习日语, 成为日语领域大神x</li>
+<li>尝试写小说, 构建世界观并写一些oc小故事</li>
+<li>学习乐器(可能是电子钢琴), 学习编曲作曲</li>
 </ul>
-<h3 id="符号规约">符号规约</h3>
-<blockquote>
-<p><strong>Tips:</strong> 由于本部分内容基本已在FLA中学习过,
-故此处笔者仅作最基本的符号规约和定义陈述.</p>
-</blockquote>
-<h4 id="串string和语言language">串(string)和语言(language)</h4>
-<ul>
-<li><p><strong>字母表(Alphabet):</strong> 一个有穷的符号集合<span
-class="math inline">\(\Sigma\)</span></p></li>
-<li><p><strong>串(String):</strong> 字母表中符号的有穷序列<span
-class="math inline">\(s\)</span></p>
-<ul>
-<li><span class="math inline">\(|s|\)</span>, 串长</li>
-<li><span class="math inline">\(\epsilon\)</span>, 空串</li>
-</ul></li>
-<li><p><strong>语言(language):</strong>
-是某个给定字母表上的串的可数集合</p></li>
-<li><p><strong>前缀(prefix)/后缀(suffix):</strong>
-从串的尾部/头部删除0个或多个符号后得到的串</p></li>
-<li><p><strong>子串(substring):</strong>
-删除串的某个前缀和某个后缀得到的串</p></li>
-<li><p><strong>子序列:</strong>
-从原串中删除0个或者多个符号后得到的串</p></li>
-<li><p><strong>真前缀, 真后缀, 真子串:</strong> 既不等于原串,
-也不等于空串的前缀, 后缀, 子串</p></li>
-<li><p><strong>串的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-3.png" class="" title="pic3-3">
-<p>其中<span class="math inline">\(\lambda\)</span>和<span
-class="math inline">\(\epsilon\)</span>均表示空串</p>
-</blockquote></li>
-<li><p><strong>字母表的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-4.png" class="" title="pic3-4">
-</blockquote></li>
-<li><p><strong>语言的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-5.png" class="" title="pic3-5">
-</blockquote></li>
-</ul>
-<h4 id="正则表达式re">正则表达式(RE)</h4>
-<p><strong>归纳奠基:</strong></p>
-<ul>
-<li><span class="math inline">\(\epsilon\)</span>是一个正则表达式, <span
-class="math inline">\(L(\epsilon) = \{\epsilon\}\)</span></li>
-<li>如果<span class="math inline">\(a\)</span>是<span
-class="math inline">\(\Sigma\)</span>上的一个符号，那么<span
-class="math inline">\(a\)</span>是正则表达式, <span
-class="math inline">\(L(a) = \{a\}\)</span></li>
-</ul>
-<p><strong>归纳递推:</strong></p>
-<ul>
-<li><strong>选择(或):</strong> <span class="math inline">\(r|s,
-L(r|s)=L(r)\cup L(s)\)</span></li>
-<li><strong>连接(拼接):</strong> <span class="math inline">\(rs,
-L(rs)=L(r)L(s)\)</span></li>
-<li><strong>闭包:</strong> <span class="math inline">\(r^*,
-L(r^*)=L^*(r)\)</span></li>
-</ul>
-<blockquote>
-<p><strong>正则表达式的扩展运算:</strong></p>
-<img src="/Course-Compiler-3/pic3-6.png" class="" title="pic3-6">
-</blockquote>
-<h4 id="dfanfa">DFA&amp;NFA</h4>
-<p>详见<a
-target="_blank" rel="noopener" href="https://fla.cuijiacai.com/02-fa/"><strong>崔家才|有穷自动机</strong></a></p>
-<p>内容包括</p>
-<ul>
-<li>DFA&amp;NFA的定义</li>
-<li>DFA&lt;-&gt;NFA的转化
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43655282/article/details/108963761"><strong>CSDN|NFA-&gt;DFA</strong></a></li>
-</ul></li>
-<li>DFA最小化算法
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31166841"><strong>知乎|Hopcroft
-算法</strong></a></li>
-</ul></li>
-</ul>
-<h3 id="词法单元的规约">词法单元的规约</h3>
-<p><strong>正则表达式</strong>可以高效、简洁地描述处理词法单元时用到的模式类型</p>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-3/pic3-7.png" class="" title="pic3-7">
-</blockquote>
-<h3 id="词法单元的识别">词法单元的识别</h3>
-<ul>
-<li>词法分析器要求能够检查输入字符串，在其前缀中找出和某个模式匹配的词素</li>
-<li>首先通过正则定义来描述各种词法单元的模式</li>
-<li>定义<span class="math inline">\(ws \rightarrow(blank | tab |
-newline)^+\)</span>来消除空白
-<ul>
-<li>当词法分析器识别出这个模式时，不返回词法单元，继续识别其它模式</li>
-</ul></li>
-</ul>
-<img src="/Course-Compiler-3/pic3-8.png" class="" title="pic3-8">
-<h4 id="状态转移图transition-diagram">状态转移图(transition
-diagram)</h4>
-<p>词法分析器最重要的组件之一.</p>
-<ul>
-<li><strong>状态(state):</strong> 表示在识别词素时可能出现的情况
-<ul>
-<li>状态看作是已处理部分的总结</li>
-<li>某些状态为接受状态或最终状态，表明已找到词素</li>
-<li>加上*的接受状态表示最后读入的符号不在词素中</li>
-<li>开始状态(初始状态)：用Start边表示</li>
-</ul></li>
-<li><strong>边(edge):</strong> 从一个状态指向另一个状态.
-<ul>
-<li>边的标号是一个或多个符号</li>
-<li>当前状态为s，下一个输入符号为a，就沿着从s离开，标号为a的边到达下一个状态</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-3/pic3-9.png" class="" title="pic3-9">
-</blockquote>
-<h3 id="词法分析器的体系结构">词法分析器的体系结构</h3>
-<ul>
-<li>从转换图构造词法分析器的方法
-<ul>
-<li>变量state记录当前状态</li>
-<li>一个switch语句根据state的值转到相应的代码</li>
-<li>每个状态对应于一段代码
-<ul>
-<li>这段代码根据读入的符号，确定下一个状态</li>
-<li>如果找不到相应的边，则调用<code>fail()</code>进行错误恢复</li>
-</ul></li>
-<li>进入某个接受状态时，返回相应的词法单元
-<ul>
-<li>注意状态有*标记时，需要回退forward指针</li>
-</ul></li>
-</ul></li>
-<li>实际是模拟转换图的运行</li>
-</ul>
-<h4 id="处理多个模式的方法">处理多个模式的方法</h4>
-<ul>
-<li>按照优先级，顺序地尝试各个状态转换图，如果引发<code>fail()</code>，回退并尝试下一个状态图</li>
-<li>更好的方法：并行地运行各个状态转换图；通过greedy策略，识别最长的与某个模式匹配的输入前缀</li>
-<li>实际使用的方法：预先把各个状态转换图合成一个状态转换图，然后运行这个状态转换图</li>
-</ul>
-<h3 id="词法分析工具lexflex">词法分析工具Lex/Flex</h3>
-<h4 id="lex源程序的结构">Lex源程序的结构</h4>
-<ul>
-<li><strong>声明部分</strong>
-<ul>
-<li>常量：表示常数的标识符</li>
-<li>正则定义</li>
-</ul></li>
-<li><strong>转换规则:</strong> <code>模式&#123; 动作 &#125;</code>
-<ul>
-<li>模式是正则表达式</li>
-<li>动作表示识别到相应模式时应采取的处理方式</li>
-<li>处理方式通常用是C语言代码表示</li>
-</ul></li>
-<li><strong>辅助函数</strong>
-<ul>
-<li>各个动作中使用的函数</li>
-</ul></li>
-</ul>
-<img src="/Course-Compiler-3/pic3-10.png" class="" title="pic3-10">
-<blockquote>
-<p>例子详见ppt: <a
-target="_blank" rel="noopener" href="https://cs.nju.edu.cn/changxu/2_compiler/slides/Chapter_3.pdf#page=35"><strong>传送链接</strong></a></p>
-</blockquote>
-<h4 id="词法分析器的工作方式">词法分析器的工作方式</h4>
-<ul>
-<li>Lex生成的词法分析器作为一个函数被调用</li>
-<li>在每次调用过程中，不断读入余下的输入符号</li>
-<li>发现最长的、与某个模式匹配的输入前缀时
-<ul>
-<li>调用相应的动作，该动作进行相关处理</li>
-<li>之后词法分析器继续寻找其它词素</li>
-</ul></li>
-</ul>
-<h4 id="lex中的冲突解决方法">Lex中的冲突解决方法</h4>
-<img src="/Course-Compiler-3/pic3-11.png" class="" title="pic3-11">
 
     </div>
 
@@ -548,8 +331,7 @@ target="_blank" rel="noopener" href="https://cs.nju.edu.cn/changxu/2_compiler/sl
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" rel="tag"># 课程笔记</a>
-              <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag"># 编译原理</a>
+              <a href="/tags/%E6%9D%82%E9%A1%B9/" rel="tag"># 杂项</a>
           </div>
 
         
@@ -558,13 +340,10 @@ target="_blank" rel="noopener" href="https://cs.nju.edu.cn/changxu/2_compiler/sl
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Course-Compiler-1/" rel="prev" title="课程笔记-NJU编译原理 Ch1 引论">
-      <i class="fa fa-chevron-left"></i> 课程笔记-NJU编译原理 Ch1 引论
+    <a href="/BookNote-RustProgrammingLanguage-1/" rel="prev" title="读书笔记-Rust程序设计语言 Ch1-Ch6">
+      <i class="fa fa-chevron-left"></i> 读书笔记-Rust程序设计语言 Ch1-Ch6
     </a></div>
-      <div class="post-nav-item">
-    <a href="/LeetCode-P10/" rel="next" title="LeetCode个人题解[C++] P10 正则表达式匹配">
-      LeetCode个人题解[C++] P10 正则表达式匹配 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -624,8 +403,7 @@ target="_blank" rel="noopener" href="https://cs.nju.edu.cn/changxu/2_compiler/sl
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E8%AE%BE%E7%BD%AE%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.</span> <span class="nav-text">独立词法分析器设置原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E5%AE%9A%E4%B9%89%E7%AC%A6%E5%8F%B7%E8%A7%84%E7%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">名词定义&amp;符号规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">名词定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">2.1.1.</span> <span class="nav-text">词法单元的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E8%A7%84%E7%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">符号规约</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2string%E5%92%8C%E8%AF%AD%E8%A8%80language"><span class="nav-number">2.2.1.</span> <span class="nav-text">串(string)和语言(language)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fre"><span class="nav-number">2.2.2.</span> <span class="nav-text">正则表达式(RE)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dfanfa"><span class="nav-number">2.2.3.</span> <span class="nav-text">DFA&amp;NFA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6"><span class="nav-number">2.3.</span> <span class="nav-text">词法单元的规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">2.4.</span> <span class="nav-text">词法单元的识别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BEtransition-diagram"><span class="nav-number">2.4.1.</span> <span class="nav-text">状态转移图(transition
-diagram)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">词法分析器的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%A4%9A%E4%B8%AA%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.1.</span> <span class="nav-text">处理多个模式的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7lexflex"><span class="nav-number">2.6.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lex%E6%BA%90%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">2.6.1.</span> <span class="nav-text">Lex源程序的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">2.6.2.</span> <span class="nav-text">词法分析器的工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lex%E4%B8%AD%E7%9A%84%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.6.3.</span> <span class="nav-text">Lex中的冲突解决方法</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E6%9C%9F%E8%AE%A1%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">短期计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E6%9C%9F%E8%AE%A1%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">学期计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E6%9C%9F%E8%AF%BE%E4%BD%99%E8%AE%A1%E5%88%92%E5%B8%8C%E6%9C%9B%E8%87%B3%E5%B0%91%E8%83%BD%E5%81%9A%E4%B8%80%E7%82%B9%E5%90%A7"><span class="nav-number">3.</span> <span class="nav-text">学期课余计划(希望至少能做一点吧)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E6%98%AF%E5%AD%98%E5%9C%A8%E4%BA%8E%E5%B9%BB%E6%83%B3%E4%B8%AD%E7%9A%84%E8%AE%A1%E5%88%92"><span class="nav-number">4.</span> <span class="nav-text">可能是存在于幻想中的计划</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -945,7 +723,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'la-pluma.github.io',
       owner       : 'La-Pluma',
       admin       : ['La-Pluma'],
-      id          : '9f2702b72450bc07f1ea61dd6cabac12',
+      id          : 'd95dfcc04f0c3ae51a92b0a654c3771d',
         language: 'zh-CN',
       distractionFreeMode: true
     });

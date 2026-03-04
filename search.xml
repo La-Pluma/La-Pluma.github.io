@@ -170,167 +170,8 @@ class="uri">https://blog.csdn.net/weixin_62075168/article/details/131226082</a><
         <category>AI</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
         <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>读书笔记-大话设计模式 Ch1-Ch5</title>
-    <url>/BookNote-DesignPatterns-by-JieCheng-2/</url>
-    <content><![CDATA[<p><strong>好的代码可维护, 可复用, 可扩展, 灵活性强.</strong></p>
-<span id="more"></span>
-<p>
-<font size = 5><b>目录</b></font>
-</p>
-<ul>
-<li><a href="#additional--uml类图">Additional : UML类图</a>
-<ul>
-<li><a href="#什么是uml">什么是UML</a></li>
-<li><a href="#uml类图的示例">UML类图的示例</a></li>
-</ul></li>
-<li><a href="#chapter-1-简单工厂模式simple-factory">Chapter 1:
-简单工厂模式(Simple Factory)</a></li>
-<li><a href="#chapter-2-策略模式strategy">Chapter 2:
-策略模式(Strategy)</a>
-<ul>
-<li><a href="#收银的策略模式实现">收银的策略模式实现</a></li>
-<li><a href="#策略模式解析">策略模式解析</a></li>
-</ul></li>
-<li><a href="#chapter-3-单一职责原则srp">Chapter 3:
-单一职责原则(SRP)</a></li>
-<li><a href="#chapter-4-开放-封闭原则ocp">Chapter 4:
-开放-封闭原则(OCP)</a></li>
-<li><a href="#chapter-5-依赖倒转原则">Chapter 5: 依赖倒转原则</a>
-<ul>
-<li><a href="#里氏代换原则lsp">里氏代换原则(LSP)</a></li>
-</ul></li>
-</ul>
-<h2 id="additional-uml类图">Additional : UML类图</h2>
-<p><strong>在线UML工具:</strong> <a
-href="https://www.plantuml.com/plantuml/uml"
-class="uri">https://www.plantuml.com/plantuml/uml</a></p>
-<h3 id="什么是uml">什么是UML</h3>
-<p><strong>统一建模语言UML(Unified Modeling Language)</strong>
-是一种脚本语言, 是一种开放的方法, 用于说明, 可视化,
-构建和编写一个正在开发的, 面向对象的, 软件密集系统的产品的开放方法.</p>
-<p>简单来说, 对于应用的人, 可以通过简单的语言来生成描述的图像(包括类图,
-时序图等).</p>
-<h3 id="uml类图的示例">UML类图的示例</h3>
-<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-2.png" class="" title="pic2-2">
-<p>关于UML类图的介绍在Internet中有充足的资料和手册,
-书中也有简单的规约介绍,
-笔者在此不详细介绍UML图的语法和规约.(或者待专门出一期整理UML用法的栏目)</p>
-<h2 id="chapter-1-简单工厂模式simple-factory">Chapter 1:
-简单工厂模式(Simple Factory)</h2>
-<p>先来看看书中给的例子:</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//简单工厂类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OperationFactory</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Operation <span class="title">createOperate</span>(<span class="params"><span class="built_in">string</span> operate</span>)</span>&#123;</span><br><span class="line">        Operation oper = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">switch</span> (operate)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                oper = <span class="keyword">new</span> OperationAdd();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                oper = <span class="keyword">new</span> OperationSub();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ...</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> oper;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//应用端</span></span><br><span class="line">Operation oper;</span><br><span class="line">oper = OperationFactory.createOperate(<span class="string">&quot;+&quot;</span>);</span><br><span class="line">oper.NumberA = <span class="number">1</span>;</span><br><span class="line">oper.NumberB = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">double</span> result = oper.GetResult();</span><br></pre></td></tr></table></figure>
-<p>UML图如下:</p>
-<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-1.png" class="" title="pic2-1">
-<p>简单来说,
-就是通过一个简单工厂类<code>XXXFactory</code>生产"产品"(实例化类),即<strong>有一个专门的类负责创建实例的过程</strong>.
-这样修改后端的功能时(比如说添加新的运算类),
-前端的逻辑不需要重构(以上述例子中只需要修改<code>createOperate("+")-&gt;createOperate("-")</code>);
-同时后端的具体实现细节没有暴露给前端, 降低了耦合度.</p>
-<h2 id="chapter-2-策略模式strategy">Chapter 2: 策略模式(Strategy)</h2>
-<ul>
-<li>面向对象的编程, 并不是类越多越好, 类的划分是为了封装,
-但分类的基础是抽象, 具有相同属性和功能的对象的抽象集合才是类.</li>
-</ul>
-<p><strong>策略模式(Strategy)</strong> 定义了算法家族, 分别封装起来,
-让它们之间相互替换, 此模式让算法的变化不会影响到使用算法的客户.</p>
-<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-3.png" class="" title="pic2-3">
-<h3 id="收银的策略模式实现">收银的策略模式实现</h3>
-<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-4.png" class="" title="pic2-4">
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//back end</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">CashContext</span>&#123;</span><br><span class="line">    CashSuper cs = <span class="literal">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CashContext</span>(<span class="params"><span class="built_in">string</span> type</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//该部分可以采用访问者模式(Visitor)优化</span></span><br><span class="line">        <span class="keyword">switch</span>(type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;正常收费&quot;</span>:</span><br><span class="line">                Cashnormal cs0 = <span class="keyword">new</span> CashNormal();</span><br><span class="line">                cs = cs0;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;300减100&quot;</span>:</span><br><span class="line">                CashReturn cr1 = <span class="keyword">new</span> CashReturn(<span class="string">&quot;300&quot;</span>, <span class="string">&quot;100&quot;</span>);</span><br><span class="line">                cs = cr1;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;打8折&quot;</span>:</span><br><span class="line">                CashRebate cr2 = <span class="keyword">new</span> CashRebate(<span class="string">&quot;0.8&quot;</span>);</span><br><span class="line">                cs = cr2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetResult</span>(<span class="params"><span class="built_in">double</span> money</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cs.acceptCash(money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">//front end</span></span><br><span class="line"><span class="built_in">double</span> total = <span class="number">0.0</span><span class="function">d</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnOk_click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//客户端UI操作时传入相应字符串</span></span><br><span class="line">    CashContext csuper = <span class="keyword">new</span> CashContext(cbxType.SelectedItem.ToString());</span><br><span class="line">    <span class="built_in">double</span> totalprices = <span class="number">0</span>d;</span><br><span class="line">    totalPrices = csuper.Getresult(Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(txtNum.Text));</span><br><span class="line">    total += totalPrices;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="策略模式解析">策略模式解析</h3>
-<ul>
-<li><p>策略模式是一种定义一系列算法的方法, 从概念上看,
-所有这些算法完成的都是相同的工作, 只是实现不同,
-它可以以相同的方式调用所有的算法,
-减少了各种算法类与使用算法类之间的耦合.</p></li>
-<li><p>策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为.
-继承有助于析出这些算法的公共功能.</p>
-<blockquote>
-<p>对于上述代码案例, 即是<code>GetResult()</code>.</p>
-</blockquote></li>
-<li><p>策略模式的优点是简化了单元测试, 因为每个算法都有自己的类,
-可以通过自己的接口单独测试.</p></li>
-<li><p>策略模式用于封装算法, 在实践中, 可以用它来封装几乎任何类型的规则,
-只要在分析过程中听到需要在不同时间应用不同的业务规则,
-就可以考虑使用策略模式处理这种变化的可能性.</p></li>
-</ul>
-<h2 id="chapter-3-单一职责原则srp">Chapter 3: 单一职责原则(SRP)</h2>
-<p><strong>就一个类而言, 应该仅有一个引起它变化的原因.</strong></p>
-<ul>
-<li>如果一个类承担的职责过多, 就等于把这些职责耦合在一起,
-一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力.
-这种耦合会导致脆弱的设计, 当变化发生时, 设计会遭受到意想不到的破坏.</li>
-<li>软件设计真正要做的许多内容, 就是发现职责并把那些职责相互分离.</li>
-<li>如果你能想到多于一个的动机去改变一个类,
-那么这个类就具有多于一个的职责.</li>
-</ul>
-<h2 id="chapter-4-开放-封闭原则ocp">Chapter 4: 开放-封闭原则(OCP)</h2>
-<ul>
-<li><p><strong>开放-封闭原则(The Open-Closed Principle):</strong>
-软件实体(类, 模块, 函数等)应该可以扩展, 但不能修改.</p>
-<ul>
-<li>对于扩展是开放的(Open for extension)</li>
-<li>对于修改是封闭的(Closed for modification)</li>
-</ul></li>
-<li><p><strong>绝对的对修改关闭是不可能的.</strong></p>
-<blockquote>
-<p>无论模块是多么的"封闭", 都会存在一些无法对之封闭的变化.
-既然不可能完全封闭,
-设计人员必须对于他设计的模块应该对哪种变化封闭做出选择.
-他必须先猜测出最有可能发生的变化种类, 然后构造抽象来隔离那些变化.</p>
-</blockquote></li>
-<li><p><strong>等到变化发生时立即采取行动</strong></p>
-<ul>
-<li>最初编写代码时, 假设变化不会发生. 当变化发生时,
-创建抽象来隔离以后发生的同类变化.</li>
-<li>面对需求, 对程序的改动是通过增加新代码进行的,
-而不是更改现有的代码.</li>
-</ul></li>
-</ul>
-<p><strong>开放-封闭原则是面向对象设计的核心所在.
-遵循这个原则可以带来面向对象奇数所声称的巨大好处, 也就是可维护, 可扩展,
-可复用, 灵活性好. 开发人员应当仅对程序中频繁出现的变化的那部分做出抽象.
-然而, 对于应用程序中的每个部分都刻意地进行抽象同样不是一个好主意.
-拒绝不成熟的抽象和抽象本身一样重要.</strong></p>
-<h2 id="chapter-5-依赖倒转原则">Chapter 5: 依赖倒转原则</h2>
-<ul>
-<li><strong>依赖倒转原则:</strong> 抽象不应该依赖细节,
-细节应该依赖于抽象
-<ul>
-<li>即: <strong>针对接口编程, 不要对实现编程.</strong></li>
-<li>高层模块不应该依赖低层模块, 两个都应该依赖抽象.</li>
-</ul></li>
-</ul>
-<p><strong>依赖倒转其实可以说是面向对象设计的标志,
-用哪种语言来编写程序不重要,
-如果编写时考虑的都是如何针对抽象编程而不是针对细节编程,
-即程序中所有的依赖关系都是终止于抽象类或者接口, 那就是面向对象的设计,
-反之那就是过程化的设计了.</strong></p>
-<h3 id="里氏代换原则lsp">里氏代换原则(LSP)</h3>
-<p><strong>子类型必须能够替换掉它们的父类型.</strong></p>
-<ul>
-<li><p>一个软件实体如果使用的是一个父类的话, 那么一定适用于其子类,
-而且它察觉不出父类对象和子类对象的区别. 也就是说, 在软件里面,
-把父类都替换成它的子类, 程序的行为没有变化.</p></li>
-<li><p>只有当子类可以替换掉父类, 软件单位的功能不受影响时,
-父类才能真正被复用, 而子类也能够在父类的基础上增加新的行为.</p></li>
-<li><p>由于子类型的可替换性才使得使用父类类型的模块在无需修改的情况下就可以扩展.</p>
-<blockquote>
-<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-5.png" class="" title="pic2-5">
-</blockquote></li>
-</ul>
-]]></content>
-      <categories>
-        <category>读书笔记-设计模式</category>
-      </categories>
-      <tags>
-        <tag>读书笔记</tag>
-        <tag>设计模式</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -599,6 +440,165 @@ Generic</a>将泛型表述为:</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CatShoutEventArgs</span> : <span class="title">EventArgs</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name&#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;<span class="keyword">return</span> name; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;name = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Cat</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cat</span>(<span class="params"><span class="built_in">string</span> name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">CatShoutEventHandler</span>(<span class="params"><span class="built_in">object</span> sender, CatShoutEventArgs args</span>)</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">event</span> CatShoutEventHandler CatShout;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Shout</span>()</span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;喵, 我是&#123;0&#125;.&quot;</span>, name);</span><br><span class="line">        <span class="keyword">if</span>(CatShout != <span class="literal">null</span>)&#123;</span><br><span class="line">            CatShoutEventArgs e = <span class="keyword">new</span> CatShoutEventArgs();</span><br><span class="line">            e.Name = <span class="keyword">this</span>.name;</span><br><span class="line">            CatShout(<span class="keyword">this</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Mouse</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mouse</span>(<span class="params"><span class="built_in">string</span> name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"><span class="built_in">object</span> sender, CatShoutEventArgs args</span>)</span>&#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;老猫&#123;0&#125;来了, &#123;1&#125;快跑!&quot;</span>, args.Name, name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Main执行结果:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">喵, 我是Tom.</span><br><span class="line">老猫Tom来了, Jerry快跑!</span><br><span class="line">老猫Tom来了, Jack快跑!</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>读书笔记-设计模式</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记-大话设计模式 Ch1-Ch5</title>
+    <url>/BookNote-DesignPatterns-by-JieCheng-2/</url>
+    <content><![CDATA[<p><strong>好的代码可维护, 可复用, 可扩展, 灵活性强.</strong></p>
+<span id="more"></span>
+<p>
+<font size = 5><b>目录</b></font>
+</p>
+<ul>
+<li><a href="#additional--uml类图">Additional : UML类图</a>
+<ul>
+<li><a href="#什么是uml">什么是UML</a></li>
+<li><a href="#uml类图的示例">UML类图的示例</a></li>
+</ul></li>
+<li><a href="#chapter-1-简单工厂模式simple-factory">Chapter 1:
+简单工厂模式(Simple Factory)</a></li>
+<li><a href="#chapter-2-策略模式strategy">Chapter 2:
+策略模式(Strategy)</a>
+<ul>
+<li><a href="#收银的策略模式实现">收银的策略模式实现</a></li>
+<li><a href="#策略模式解析">策略模式解析</a></li>
+</ul></li>
+<li><a href="#chapter-3-单一职责原则srp">Chapter 3:
+单一职责原则(SRP)</a></li>
+<li><a href="#chapter-4-开放-封闭原则ocp">Chapter 4:
+开放-封闭原则(OCP)</a></li>
+<li><a href="#chapter-5-依赖倒转原则">Chapter 5: 依赖倒转原则</a>
+<ul>
+<li><a href="#里氏代换原则lsp">里氏代换原则(LSP)</a></li>
+</ul></li>
+</ul>
+<h2 id="additional-uml类图">Additional : UML类图</h2>
+<p><strong>在线UML工具:</strong> <a
+href="https://www.plantuml.com/plantuml/uml"
+class="uri">https://www.plantuml.com/plantuml/uml</a></p>
+<h3 id="什么是uml">什么是UML</h3>
+<p><strong>统一建模语言UML(Unified Modeling Language)</strong>
+是一种脚本语言, 是一种开放的方法, 用于说明, 可视化,
+构建和编写一个正在开发的, 面向对象的, 软件密集系统的产品的开放方法.</p>
+<p>简单来说, 对于应用的人, 可以通过简单的语言来生成描述的图像(包括类图,
+时序图等).</p>
+<h3 id="uml类图的示例">UML类图的示例</h3>
+<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-2.png" class="" title="pic2-2">
+<p>关于UML类图的介绍在Internet中有充足的资料和手册,
+书中也有简单的规约介绍,
+笔者在此不详细介绍UML图的语法和规约.<del>(或者待专门出一期整理UML用法的栏目)</del></p>
+<h2 id="chapter-1-简单工厂模式simple-factory">Chapter 1:
+简单工厂模式(Simple Factory)</h2>
+<p>先来看看书中给的例子:</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//简单工厂类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OperationFactory</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Operation <span class="title">createOperate</span>(<span class="params"><span class="built_in">string</span> operate</span>)</span>&#123;</span><br><span class="line">        Operation oper = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">switch</span> (operate)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                oper = <span class="keyword">new</span> OperationAdd();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                oper = <span class="keyword">new</span> OperationSub();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ...</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> oper;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//应用端</span></span><br><span class="line">Operation oper;</span><br><span class="line">oper = OperationFactory.createOperate(<span class="string">&quot;+&quot;</span>);</span><br><span class="line">oper.NumberA = <span class="number">1</span>;</span><br><span class="line">oper.NumberB = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">double</span> result = oper.GetResult();</span><br></pre></td></tr></table></figure>
+<p>UML图如下:</p>
+<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-1.png" class="" title="pic2-1">
+<p>简单来说,
+就是通过一个简单工厂类<code>XXXFactory</code>生产"产品"(实例化类),即<strong>有一个专门的类负责创建实例的过程</strong>.
+这样修改后端的功能时(比如说添加新的运算类),
+前端的逻辑不需要重构(以上述例子中只需要修改<code>createOperate("+")-&gt;createOperate("-")</code>);
+同时后端的具体实现细节没有暴露给前端, 降低了耦合度.</p>
+<h2 id="chapter-2-策略模式strategy">Chapter 2: 策略模式(Strategy)</h2>
+<ul>
+<li>面向对象的编程, 并不是类越多越好, 类的划分是为了封装,
+但分类的基础是抽象, 具有相同属性和功能的对象的抽象集合才是类.</li>
+</ul>
+<p><strong>策略模式(Strategy)</strong> 定义了算法家族, 分别封装起来,
+让它们之间相互替换, 此模式让算法的变化不会影响到使用算法的客户.</p>
+<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-3.png" class="" title="pic2-3">
+<h3 id="收银的策略模式实现">收银的策略模式实现</h3>
+<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-4.png" class="" title="pic2-4">
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//back end</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">CashContext</span>&#123;</span><br><span class="line">    CashSuper cs = <span class="literal">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CashContext</span>(<span class="params"><span class="built_in">string</span> type</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//该部分可以采用访问者模式(Visitor)优化</span></span><br><span class="line">        <span class="keyword">switch</span>(type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;正常收费&quot;</span>:</span><br><span class="line">                Cashnormal cs0 = <span class="keyword">new</span> CashNormal();</span><br><span class="line">                cs = cs0;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;300减100&quot;</span>:</span><br><span class="line">                CashReturn cr1 = <span class="keyword">new</span> CashReturn(<span class="string">&quot;300&quot;</span>, <span class="string">&quot;100&quot;</span>);</span><br><span class="line">                cs = cr1;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;打8折&quot;</span>:</span><br><span class="line">                CashRebate cr2 = <span class="keyword">new</span> CashRebate(<span class="string">&quot;0.8&quot;</span>);</span><br><span class="line">                cs = cr2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetResult</span>(<span class="params"><span class="built_in">double</span> money</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cs.acceptCash(money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">//front end</span></span><br><span class="line"><span class="built_in">double</span> total = <span class="number">0.0</span><span class="function">d</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnOk_click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//客户端UI操作时传入相应字符串</span></span><br><span class="line">    CashContext csuper = <span class="keyword">new</span> CashContext(cbxType.SelectedItem.ToString());</span><br><span class="line">    <span class="built_in">double</span> totalprices = <span class="number">0</span>d;</span><br><span class="line">    totalPrices = csuper.Getresult(Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(txtNum.Text));</span><br><span class="line">    total += totalPrices;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="策略模式解析">策略模式解析</h3>
+<ul>
+<li><p>策略模式是一种定义一系列算法的方法, 从概念上看,
+所有这些算法完成的都是相同的工作, 只是实现不同,
+它可以以相同的方式调用所有的算法,
+减少了各种算法类与使用算法类之间的耦合.</p></li>
+<li><p>策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为.
+继承有助于析出这些算法的公共功能.</p>
+<blockquote>
+<p>对于上述代码案例, 即是<code>GetResult()</code>.</p>
+</blockquote></li>
+<li><p>策略模式的优点是简化了单元测试, 因为每个算法都有自己的类,
+可以通过自己的接口单独测试.</p></li>
+<li><p>策略模式用于封装算法, 在实践中, 可以用它来封装几乎任何类型的规则,
+只要在分析过程中听到需要在不同时间应用不同的业务规则,
+就可以考虑使用策略模式处理这种变化的可能性.</p></li>
+</ul>
+<h2 id="chapter-3-单一职责原则srp">Chapter 3: 单一职责原则(SRP)</h2>
+<p><strong>就一个类而言, 应该仅有一个引起它变化的原因.</strong></p>
+<ul>
+<li>如果一个类承担的职责过多, 就等于把这些职责耦合在一起,
+一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力.
+这种耦合会导致脆弱的设计, 当变化发生时, 设计会遭受到意想不到的破坏.</li>
+<li>软件设计真正要做的许多内容, 就是发现职责并把那些职责相互分离.</li>
+<li>如果你能想到多于一个的动机去改变一个类,
+那么这个类就具有多于一个的职责.</li>
+</ul>
+<h2 id="chapter-4-开放-封闭原则ocp">Chapter 4: 开放-封闭原则(OCP)</h2>
+<ul>
+<li><p><strong>开放-封闭原则(The Open-Closed Principle):</strong>
+软件实体(类, 模块, 函数等)应该可以扩展, 但不能修改.</p>
+<ul>
+<li>对于扩展是开放的(Open for extension)</li>
+<li>对于修改是封闭的(Closed for modification)</li>
+</ul></li>
+<li><p><strong>绝对的对修改关闭是不可能的.</strong></p>
+<blockquote>
+<p>无论模块是多么的"封闭", 都会存在一些无法对之封闭的变化.
+既然不可能完全封闭,
+设计人员必须对于他设计的模块应该对哪种变化封闭做出选择.
+他必须先猜测出最有可能发生的变化种类, 然后构造抽象来隔离那些变化.</p>
+</blockquote></li>
+<li><p><strong>等到变化发生时立即采取行动</strong></p>
+<ul>
+<li>最初编写代码时, 假设变化不会发生. 当变化发生时,
+创建抽象来隔离以后发生的同类变化.</li>
+<li>面对需求, 对程序的改动是通过增加新代码进行的,
+而不是更改现有的代码.</li>
+</ul></li>
+</ul>
+<p><strong>开放-封闭原则是面向对象设计的核心所在.
+遵循这个原则可以带来面向对象奇数所声称的巨大好处, 也就是可维护, 可扩展,
+可复用, 灵活性好. 开发人员应当仅对程序中频繁出现的变化的那部分做出抽象.
+然而, 对于应用程序中的每个部分都刻意地进行抽象同样不是一个好主意.
+拒绝不成熟的抽象和抽象本身一样重要.</strong></p>
+<h2 id="chapter-5-依赖倒转原则">Chapter 5: 依赖倒转原则</h2>
+<ul>
+<li><strong>依赖倒转原则:</strong> 抽象不应该依赖细节,
+细节应该依赖于抽象
+<ul>
+<li>即: <strong>针对接口编程, 不要对实现编程.</strong></li>
+<li>高层模块不应该依赖低层模块, 两个都应该依赖抽象.</li>
+</ul></li>
+</ul>
+<p><strong>依赖倒转其实可以说是面向对象设计的标志,
+用哪种语言来编写程序不重要,
+如果编写时考虑的都是如何针对抽象编程而不是针对细节编程,
+即程序中所有的依赖关系都是终止于抽象类或者接口, 那就是面向对象的设计,
+反之那就是过程化的设计了.</strong></p>
+<h3 id="里氏代换原则lsp">里氏代换原则(LSP)</h3>
+<p><strong>子类型必须能够替换掉它们的父类型.</strong></p>
+<ul>
+<li><p>一个软件实体如果使用的是一个父类的话, 那么一定适用于其子类,
+而且它察觉不出父类对象和子类对象的区别. 也就是说, 在软件里面,
+把父类都替换成它的子类, 程序的行为没有变化.</p></li>
+<li><p>只有当子类可以替换掉父类, 软件单位的功能不受影响时,
+父类才能真正被复用, 而子类也能够在父类的基础上增加新的行为.</p></li>
+<li><p>由于子类型的可替换性才使得使用父类类型的模块在无需修改的情况下就可以扩展.</p>
+<blockquote>
+<img src="/BookNote-DesignPatterns-by-JieCheng-2/pic2-5.png" class="" title="pic2-5">
+</blockquote></li>
+</ul>
 ]]></content>
       <categories>
         <category>读书笔记-设计模式</category>
@@ -3049,6 +3049,268 @@ tree)</strong></li>
       </tags>
   </entry>
   <entry>
+    <title>课程笔记-NJU编译原理 Ch3 词法分析</title>
+    <url>/Course-Compiler-3/</url>
+    <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch03
+Lexical Analysis.</strong></p>
+<span id="more"></span>
+<h2 id="词法分析器的作用">词法分析器的作用</h2>
+<ul>
+<li>读入字符流，组成词素，输出<strong>词法单元</strong>序列</li>
+<li>过滤空白、换行、制表符、注释等</li>
+<li>将词素添加到符号表中</li>
+<li>在逻辑上独立于语法分析，但是通常和语法分析器处于同一趟(pass)中</li>
+</ul>
+<img src="/Course-Compiler-3/pic3-1.png" class="" title="pic3-1">
+<h3 id="独立词法分析器设置原因">独立词法分析器设置原因</h3>
+<ul>
+<li>简化编译器的设计
+<ul>
+<li>词法分析器可以首先完成一些简单的处理工作</li>
+</ul></li>
+<li>提高编译器效率
+<ul>
+<li>相对于语法分析，词法分析过程简单，可高效实现(<strong>下推自动机PDA</strong>&amp;<strong>有穷自动机DFA</strong>)</li>
+</ul></li>
+<li>增强编译器的可移植性</li>
+</ul>
+<h2 id="名词定义符号规约">名词定义&amp;符号规约</h2>
+<blockquote>
+<p><strong>Tips:</strong>
+该部分涉及大量<strong>形式语言与自动机(FLA)</strong>的内容,
+笔者在此给出一个参考笔记<a
+href="https://fla.cuijiacai.com/"><strong>[崔家才|形式语言与自动机]</strong></a></p>
+</blockquote>
+<h3 id="名词定义">名词定义</h3>
+<ul>
+<li><strong>词法单元(token)</strong>
+<ul>
+<li><code>&lt;词法单元名, 属性值(可选) &gt;</code></li>
+<li>单元名是表示词法单位种类的抽象符号，语法分析器通过单元名即可确定词法单元序列的结构</li>
+<li>属性值通常用于语义分析之后的阶段</li>
+</ul></li>
+<li><strong>模式(pattern)</strong>
+<ul>
+<li>描述了一类词法单元的词素可能具有的形式</li>
+</ul></li>
+<li><strong>词素(lexeme)</strong>
+<ul>
+<li>源程序中的字符序列</li>
+<li>它和某个词法单元的模式匹配，被词法分析器识别为该词法单元的实例</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Additional:</strong></p>
+<img src="/Course-Compiler-3/pic3-2.png" class="" title="pic3-2">
+<p>上面的定义稍显晦涩, 不妨结合例子来看.</p>
+<p>不恰当的比喻来说, 词法单元是<strong>类型名</strong>,
+模式是<strong>类型特征</strong>, 词素是<strong>具体实例</strong>.
+即<code>猫 : 头顶有耳朵, 有尾巴的四足覆毛生物(非严谨) : 布偶猫</code>.</p>
+</blockquote>
+<h4 id="词法单元的属性">词法单元的属性</h4>
+<ul>
+<li>一个模式匹配多个词素时，必须通过属性来传递附加的信息
+<ul>
+<li>属性值将被用于语义分析、代码生成等阶段</li>
+</ul></li>
+<li>不同的目的需要不同的属性
+<ul>
+<li>属性值通常是一个结构化数据</li>
+</ul></li>
+<li>如词法单元id的属性
+<ul>
+<li>词素、类型、第一次出现的位置</li>
+</ul></li>
+</ul>
+<h3 id="符号规约">符号规约</h3>
+<blockquote>
+<p><strong>Tips:</strong> 由于本部分内容基本已在FLA中学习过,
+故此处笔者仅作最基本的符号规约和定义陈述.</p>
+</blockquote>
+<h4 id="串string和语言language">串(string)和语言(language)</h4>
+<ul>
+<li><p><strong>字母表(Alphabet):</strong> 一个有穷的符号集合<span
+class="math inline">\(\Sigma\)</span></p></li>
+<li><p><strong>串(String):</strong> 字母表中符号的有穷序列<span
+class="math inline">\(s\)</span></p>
+<ul>
+<li><span class="math inline">\(|s|\)</span>, 串长</li>
+<li><span class="math inline">\(\epsilon\)</span>, 空串</li>
+</ul></li>
+<li><p><strong>语言(language):</strong>
+是某个给定字母表上的串的可数集合</p></li>
+<li><p><strong>前缀(prefix)/后缀(suffix):</strong>
+从串的尾部/头部删除0个或多个符号后得到的串</p></li>
+<li><p><strong>子串(substring):</strong>
+删除串的某个前缀和某个后缀得到的串</p></li>
+<li><p><strong>子序列:</strong>
+从原串中删除0个或者多个符号后得到的串</p></li>
+<li><p><strong>真前缀, 真后缀, 真子串:</strong> 既不等于原串,
+也不等于空串的前缀, 后缀, 子串</p></li>
+<li><p><strong>串的运算</strong></p>
+<blockquote>
+<img src="/Course-Compiler-3/pic3-3.png" class="" title="pic3-3">
+<p>其中<span class="math inline">\(\lambda\)</span>和<span
+class="math inline">\(\epsilon\)</span>均表示空串</p>
+</blockquote></li>
+<li><p><strong>字母表的运算</strong></p>
+<blockquote>
+<img src="/Course-Compiler-3/pic3-4.png" class="" title="pic3-4">
+</blockquote></li>
+<li><p><strong>语言的运算</strong></p>
+<blockquote>
+<img src="/Course-Compiler-3/pic3-5.png" class="" title="pic3-5">
+</blockquote></li>
+</ul>
+<h4 id="正则表达式re">正则表达式(RE)</h4>
+<p><strong>归纳奠基:</strong></p>
+<ul>
+<li><span class="math inline">\(\epsilon\)</span>是一个正则表达式, <span
+class="math inline">\(L(\epsilon) = \{\epsilon\}\)</span></li>
+<li>如果<span class="math inline">\(a\)</span>是<span
+class="math inline">\(\Sigma\)</span>上的一个符号，那么<span
+class="math inline">\(a\)</span>是正则表达式, <span
+class="math inline">\(L(a) = \{a\}\)</span></li>
+</ul>
+<p><strong>归纳递推:</strong></p>
+<ul>
+<li><strong>选择(或):</strong> <span class="math inline">\(r|s,
+L(r|s)=L(r)\cup L(s)\)</span></li>
+<li><strong>连接(拼接):</strong> <span class="math inline">\(rs,
+L(rs)=L(r)L(s)\)</span></li>
+<li><strong>闭包:</strong> <span class="math inline">\(r^*,
+L(r^*)=L^*(r)\)</span></li>
+</ul>
+<blockquote>
+<p><strong>正则表达式的扩展运算:</strong></p>
+<img src="/Course-Compiler-3/pic3-6.png" class="" title="pic3-6">
+</blockquote>
+<h4 id="dfanfa">DFA&amp;NFA</h4>
+<p>详见<a
+href="https://fla.cuijiacai.com/02-fa/"><strong>崔家才|有穷自动机</strong></a></p>
+<p>内容包括</p>
+<ul>
+<li>DFA&amp;NFA的定义</li>
+<li>DFA&lt;-&gt;NFA的转化
+<ul>
+<li><a
+href="https://blog.csdn.net/weixin_43655282/article/details/108963761"><strong>CSDN|NFA-&gt;DFA</strong></a></li>
+</ul></li>
+<li>DFA最小化算法
+<ul>
+<li><a
+href="https://zhuanlan.zhihu.com/p/31166841"><strong>知乎|Hopcroft
+算法</strong></a></li>
+</ul></li>
+</ul>
+<h3 id="词法单元的规约">词法单元的规约</h3>
+<p><strong>正则表达式</strong>可以高效、简洁地描述处理词法单元时用到的模式类型</p>
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-3/pic3-7.png" class="" title="pic3-7">
+</blockquote>
+<h3 id="词法单元的识别">词法单元的识别</h3>
+<ul>
+<li>词法分析器要求能够检查输入字符串，在其前缀中找出和某个模式匹配的词素</li>
+<li>首先通过正则定义来描述各种词法单元的模式</li>
+<li>定义<span class="math inline">\(ws \rightarrow(blank | tab |
+newline)^+\)</span>来消除空白
+<ul>
+<li>当词法分析器识别出这个模式时，不返回词法单元，继续识别其它模式</li>
+</ul></li>
+</ul>
+<img src="/Course-Compiler-3/pic3-8.png" class="" title="pic3-8">
+<h4 id="状态转移图transition-diagram">状态转移图(transition
+diagram)</h4>
+<p>词法分析器最重要的组件之一.</p>
+<ul>
+<li><strong>状态(state):</strong> 表示在识别词素时可能出现的情况
+<ul>
+<li>状态看作是已处理部分的总结</li>
+<li>某些状态为接受状态或最终状态，表明已找到词素</li>
+<li>加上*的接受状态表示最后读入的符号不在词素中</li>
+<li>开始状态(初始状态)：用Start边表示</li>
+</ul></li>
+<li><strong>边(edge):</strong> 从一个状态指向另一个状态.
+<ul>
+<li>边的标号是一个或多个符号</li>
+<li>当前状态为s，下一个输入符号为a，就沿着从s离开，标号为a的边到达下一个状态</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-3/pic3-9.png" class="" title="pic3-9">
+</blockquote>
+<h3 id="词法分析器的体系结构">词法分析器的体系结构</h3>
+<ul>
+<li>从转换图构造词法分析器的方法
+<ul>
+<li>变量state记录当前状态</li>
+<li>一个switch语句根据state的值转到相应的代码</li>
+<li>每个状态对应于一段代码
+<ul>
+<li>这段代码根据读入的符号，确定下一个状态</li>
+<li>如果找不到相应的边，则调用<code>fail()</code>进行错误恢复</li>
+</ul></li>
+<li>进入某个接受状态时，返回相应的词法单元
+<ul>
+<li>注意状态有*标记时，需要回退forward指针</li>
+</ul></li>
+</ul></li>
+<li>实际是模拟转换图的运行</li>
+</ul>
+<h4 id="处理多个模式的方法">处理多个模式的方法</h4>
+<ul>
+<li>按照优先级，顺序地尝试各个状态转换图，如果引发<code>fail()</code>，回退并尝试下一个状态图</li>
+<li>更好的方法：并行地运行各个状态转换图；通过greedy策略，识别最长的与某个模式匹配的输入前缀</li>
+<li>实际使用的方法：预先把各个状态转换图合成一个状态转换图，然后运行这个状态转换图</li>
+</ul>
+<h3 id="词法分析工具lexflex">词法分析工具Lex/Flex</h3>
+<h4 id="lex源程序的结构">Lex源程序的结构</h4>
+<ul>
+<li><strong>声明部分</strong>
+<ul>
+<li>常量：表示常数的标识符</li>
+<li>正则定义</li>
+</ul></li>
+<li><strong>转换规则:</strong> <code>模式&#123; 动作 &#125;</code>
+<ul>
+<li>模式是正则表达式</li>
+<li>动作表示识别到相应模式时应采取的处理方式</li>
+<li>处理方式通常用是C语言代码表示</li>
+</ul></li>
+<li><strong>辅助函数</strong>
+<ul>
+<li>各个动作中使用的函数</li>
+</ul></li>
+</ul>
+<img src="/Course-Compiler-3/pic3-10.png" class="" title="pic3-10">
+<blockquote>
+<p>例子详见ppt: <a
+href="https://cs.nju.edu.cn/changxu/2_compiler/slides/Chapter_3.pdf#page=35"><strong>传送链接</strong></a></p>
+</blockquote>
+<h4 id="词法分析器的工作方式">词法分析器的工作方式</h4>
+<ul>
+<li>Lex生成的词法分析器作为一个函数被调用</li>
+<li>在每次调用过程中，不断读入余下的输入符号</li>
+<li>发现最长的、与某个模式匹配的输入前缀时
+<ul>
+<li>调用相应的动作，该动作进行相关处理</li>
+<li>之后词法分析器继续寻找其它词素</li>
+</ul></li>
+</ul>
+<h4 id="lex中的冲突解决方法">Lex中的冲突解决方法</h4>
+<img src="/Course-Compiler-3/pic3-11.png" class="" title="pic3-11">
+]]></content>
+      <categories>
+        <category>课程笔记-编译原理</category>
+      </categories>
+      <tags>
+        <tag>课程笔记</tag>
+        <tag>编译原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>课程笔记-NJU编译原理 Ch4 语法分析</title>
     <url>/Course-Compiler-4/</url>
     <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch04
@@ -4307,268 +4569,6 @@ class="math inline">\(\alpha\)</span>的串为止</li>
 <h2 id="后记">后记</h2>
 <p>语法分析这一章节实在是知识点过于琐碎, 难度过高,
 其中部分内容仅是囫囵扫过, 待日后再回来学习吧.</p>
-]]></content>
-      <categories>
-        <category>课程笔记-编译原理</category>
-      </categories>
-      <tags>
-        <tag>课程笔记</tag>
-        <tag>编译原理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>课程笔记-NJU编译原理 Ch3 词法分析</title>
-    <url>/Course-Compiler-3/</url>
-    <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch03
-Lexical Analysis.</strong></p>
-<span id="more"></span>
-<h2 id="词法分析器的作用">词法分析器的作用</h2>
-<ul>
-<li>读入字符流，组成词素，输出<strong>词法单元</strong>序列</li>
-<li>过滤空白、换行、制表符、注释等</li>
-<li>将词素添加到符号表中</li>
-<li>在逻辑上独立于语法分析，但是通常和语法分析器处于同一趟(pass)中</li>
-</ul>
-<img src="/Course-Compiler-3/pic3-1.png" class="" title="pic3-1">
-<h3 id="独立词法分析器设置原因">独立词法分析器设置原因</h3>
-<ul>
-<li>简化编译器的设计
-<ul>
-<li>词法分析器可以首先完成一些简单的处理工作</li>
-</ul></li>
-<li>提高编译器效率
-<ul>
-<li>相对于语法分析，词法分析过程简单，可高效实现(<strong>下推自动机PDA</strong>&amp;<strong>有穷自动机DFA</strong>)</li>
-</ul></li>
-<li>增强编译器的可移植性</li>
-</ul>
-<h2 id="名词定义符号规约">名词定义&amp;符号规约</h2>
-<blockquote>
-<p><strong>Tips:</strong>
-该部分涉及大量<strong>形式语言与自动机(FLA)</strong>的内容,
-笔者在此给出一个参考笔记<a
-href="https://fla.cuijiacai.com/"><strong>[崔家才|形式语言与自动机]</strong></a></p>
-</blockquote>
-<h3 id="名词定义">名词定义</h3>
-<ul>
-<li><strong>词法单元(token)</strong>
-<ul>
-<li><code>&lt;词法单元名, 属性值(可选) &gt;</code></li>
-<li>单元名是表示词法单位种类的抽象符号，语法分析器通过单元名即可确定词法单元序列的结构</li>
-<li>属性值通常用于语义分析之后的阶段</li>
-</ul></li>
-<li><strong>模式(pattern)</strong>
-<ul>
-<li>描述了一类词法单元的词素可能具有的形式</li>
-</ul></li>
-<li><strong>词素(lexeme)</strong>
-<ul>
-<li>源程序中的字符序列</li>
-<li>它和某个词法单元的模式匹配，被词法分析器识别为该词法单元的实例</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Additional:</strong></p>
-<img src="/Course-Compiler-3/pic3-2.png" class="" title="pic3-2">
-<p>上面的定义稍显晦涩, 不妨结合例子来看.</p>
-<p>不恰当的比喻来说, 词法单元是<strong>类型名</strong>,
-模式是<strong>类型特征</strong>, 词素是<strong>具体实例</strong>.
-即<code>猫 : 头顶有耳朵, 有尾巴的四足覆毛生物(非严谨) : 布偶猫</code>.</p>
-</blockquote>
-<h4 id="词法单元的属性">词法单元的属性</h4>
-<ul>
-<li>一个模式匹配多个词素时，必须通过属性来传递附加的信息
-<ul>
-<li>属性值将被用于语义分析、代码生成等阶段</li>
-</ul></li>
-<li>不同的目的需要不同的属性
-<ul>
-<li>属性值通常是一个结构化数据</li>
-</ul></li>
-<li>如词法单元id的属性
-<ul>
-<li>词素、类型、第一次出现的位置</li>
-</ul></li>
-</ul>
-<h3 id="符号规约">符号规约</h3>
-<blockquote>
-<p><strong>Tips:</strong> 由于本部分内容基本已在FLA中学习过,
-故此处笔者仅作最基本的符号规约和定义陈述.</p>
-</blockquote>
-<h4 id="串string和语言language">串(string)和语言(language)</h4>
-<ul>
-<li><p><strong>字母表(Alphabet):</strong> 一个有穷的符号集合<span
-class="math inline">\(\Sigma\)</span></p></li>
-<li><p><strong>串(String):</strong> 字母表中符号的有穷序列<span
-class="math inline">\(s\)</span></p>
-<ul>
-<li><span class="math inline">\(|s|\)</span>, 串长</li>
-<li><span class="math inline">\(\epsilon\)</span>, 空串</li>
-</ul></li>
-<li><p><strong>语言(language):</strong>
-是某个给定字母表上的串的可数集合</p></li>
-<li><p><strong>前缀(prefix)/后缀(suffix):</strong>
-从串的尾部/头部删除0个或多个符号后得到的串</p></li>
-<li><p><strong>子串(substring):</strong>
-删除串的某个前缀和某个后缀得到的串</p></li>
-<li><p><strong>子序列:</strong>
-从原串中删除0个或者多个符号后得到的串</p></li>
-<li><p><strong>真前缀, 真后缀, 真子串:</strong> 既不等于原串,
-也不等于空串的前缀, 后缀, 子串</p></li>
-<li><p><strong>串的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-3.png" class="" title="pic3-3">
-<p>其中<span class="math inline">\(\lambda\)</span>和<span
-class="math inline">\(\epsilon\)</span>均表示空串</p>
-</blockquote></li>
-<li><p><strong>字母表的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-4.png" class="" title="pic3-4">
-</blockquote></li>
-<li><p><strong>语言的运算</strong></p>
-<blockquote>
-<img src="/Course-Compiler-3/pic3-5.png" class="" title="pic3-5">
-</blockquote></li>
-</ul>
-<h4 id="正则表达式re">正则表达式(RE)</h4>
-<p><strong>归纳奠基:</strong></p>
-<ul>
-<li><span class="math inline">\(\epsilon\)</span>是一个正则表达式, <span
-class="math inline">\(L(\epsilon) = \{\epsilon\}\)</span></li>
-<li>如果<span class="math inline">\(a\)</span>是<span
-class="math inline">\(\Sigma\)</span>上的一个符号，那么<span
-class="math inline">\(a\)</span>是正则表达式, <span
-class="math inline">\(L(a) = \{a\}\)</span></li>
-</ul>
-<p><strong>归纳递推:</strong></p>
-<ul>
-<li><strong>选择(或):</strong> <span class="math inline">\(r|s,
-L(r|s)=L(r)\cup L(s)\)</span></li>
-<li><strong>连接(拼接):</strong> <span class="math inline">\(rs,
-L(rs)=L(r)L(s)\)</span></li>
-<li><strong>闭包:</strong> <span class="math inline">\(r^*,
-L(r^*)=L^*(r)\)</span></li>
-</ul>
-<blockquote>
-<p><strong>正则表达式的扩展运算:</strong></p>
-<img src="/Course-Compiler-3/pic3-6.png" class="" title="pic3-6">
-</blockquote>
-<h4 id="dfanfa">DFA&amp;NFA</h4>
-<p>详见<a
-href="https://fla.cuijiacai.com/02-fa/"><strong>崔家才|有穷自动机</strong></a></p>
-<p>内容包括</p>
-<ul>
-<li>DFA&amp;NFA的定义</li>
-<li>DFA&lt;-&gt;NFA的转化
-<ul>
-<li><a
-href="https://blog.csdn.net/weixin_43655282/article/details/108963761"><strong>CSDN|NFA-&gt;DFA</strong></a></li>
-</ul></li>
-<li>DFA最小化算法
-<ul>
-<li><a
-href="https://zhuanlan.zhihu.com/p/31166841"><strong>知乎|Hopcroft
-算法</strong></a></li>
-</ul></li>
-</ul>
-<h3 id="词法单元的规约">词法单元的规约</h3>
-<p><strong>正则表达式</strong>可以高效、简洁地描述处理词法单元时用到的模式类型</p>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-3/pic3-7.png" class="" title="pic3-7">
-</blockquote>
-<h3 id="词法单元的识别">词法单元的识别</h3>
-<ul>
-<li>词法分析器要求能够检查输入字符串，在其前缀中找出和某个模式匹配的词素</li>
-<li>首先通过正则定义来描述各种词法单元的模式</li>
-<li>定义<span class="math inline">\(ws \rightarrow(blank | tab |
-newline)^+\)</span>来消除空白
-<ul>
-<li>当词法分析器识别出这个模式时，不返回词法单元，继续识别其它模式</li>
-</ul></li>
-</ul>
-<img src="/Course-Compiler-3/pic3-8.png" class="" title="pic3-8">
-<h4 id="状态转移图transition-diagram">状态转移图(transition
-diagram)</h4>
-<p>词法分析器最重要的组件之一.</p>
-<ul>
-<li><strong>状态(state):</strong> 表示在识别词素时可能出现的情况
-<ul>
-<li>状态看作是已处理部分的总结</li>
-<li>某些状态为接受状态或最终状态，表明已找到词素</li>
-<li>加上*的接受状态表示最后读入的符号不在词素中</li>
-<li>开始状态(初始状态)：用Start边表示</li>
-</ul></li>
-<li><strong>边(edge):</strong> 从一个状态指向另一个状态.
-<ul>
-<li>边的标号是一个或多个符号</li>
-<li>当前状态为s，下一个输入符号为a，就沿着从s离开，标号为a的边到达下一个状态</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-3/pic3-9.png" class="" title="pic3-9">
-</blockquote>
-<h3 id="词法分析器的体系结构">词法分析器的体系结构</h3>
-<ul>
-<li>从转换图构造词法分析器的方法
-<ul>
-<li>变量state记录当前状态</li>
-<li>一个switch语句根据state的值转到相应的代码</li>
-<li>每个状态对应于一段代码
-<ul>
-<li>这段代码根据读入的符号，确定下一个状态</li>
-<li>如果找不到相应的边，则调用<code>fail()</code>进行错误恢复</li>
-</ul></li>
-<li>进入某个接受状态时，返回相应的词法单元
-<ul>
-<li>注意状态有*标记时，需要回退forward指针</li>
-</ul></li>
-</ul></li>
-<li>实际是模拟转换图的运行</li>
-</ul>
-<h4 id="处理多个模式的方法">处理多个模式的方法</h4>
-<ul>
-<li>按照优先级，顺序地尝试各个状态转换图，如果引发<code>fail()</code>，回退并尝试下一个状态图</li>
-<li>更好的方法：并行地运行各个状态转换图；通过greedy策略，识别最长的与某个模式匹配的输入前缀</li>
-<li>实际使用的方法：预先把各个状态转换图合成一个状态转换图，然后运行这个状态转换图</li>
-</ul>
-<h3 id="词法分析工具lexflex">词法分析工具Lex/Flex</h3>
-<h4 id="lex源程序的结构">Lex源程序的结构</h4>
-<ul>
-<li><strong>声明部分</strong>
-<ul>
-<li>常量：表示常数的标识符</li>
-<li>正则定义</li>
-</ul></li>
-<li><strong>转换规则:</strong> <code>模式&#123; 动作 &#125;</code>
-<ul>
-<li>模式是正则表达式</li>
-<li>动作表示识别到相应模式时应采取的处理方式</li>
-<li>处理方式通常用是C语言代码表示</li>
-</ul></li>
-<li><strong>辅助函数</strong>
-<ul>
-<li>各个动作中使用的函数</li>
-</ul></li>
-</ul>
-<img src="/Course-Compiler-3/pic3-10.png" class="" title="pic3-10">
-<blockquote>
-<p>例子详见ppt: <a
-href="https://cs.nju.edu.cn/changxu/2_compiler/slides/Chapter_3.pdf#page=35"><strong>传送链接</strong></a></p>
-</blockquote>
-<h4 id="词法分析器的工作方式">词法分析器的工作方式</h4>
-<ul>
-<li>Lex生成的词法分析器作为一个函数被调用</li>
-<li>在每次调用过程中，不断读入余下的输入符号</li>
-<li>发现最长的、与某个模式匹配的输入前缀时
-<ul>
-<li>调用相应的动作，该动作进行相关处理</li>
-<li>之后词法分析器继续寻找其它词素</li>
-</ul></li>
-</ul>
-<h4 id="lex中的冲突解决方法">Lex中的冲突解决方法</h4>
-<img src="/Course-Compiler-3/pic3-11.png" class="" title="pic3-11">
 ]]></content>
       <categories>
         <category>课程笔记-编译原理</category>
@@ -6297,6 +6297,296 @@ v的引用被复制到u中，u中原有引用丢失；使u原来指向的对象�
       </tags>
   </entry>
   <entry>
+    <title>课程笔记-NJU编译原理 Ch9 机器无关优化</title>
+    <url>/Course-Compiler-9/</url>
+    <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch09
+Machine-Free Optimization.</strong></p>
+<span id="more"></span>
+<blockquote>
+<p><strong>Tips:</strong></p>
+<p>强烈建议修习李樾和谭添老师开设的《静态分析》课程.
+该部分的理论知识更贴近于静态分析的内容, 因此本笔记会略去相关内容.</p>
+<p><strong>课程链接</strong> <a
+href="https://tai-e.pascal-lab.net/lectures.html"
+class="uri">https://tai-e.pascal-lab.net/lectures.html</a></p>
+</blockquote>
+<h2 id="引言">引言</h2>
+<ul>
+<li>代码优化或者代码改进
+<ul>
+<li>在目标代码中消除不必要的指令</li>
+<li>把一个指令序列替换为一个完成相同功能的更快的指令序列</li>
+</ul></li>
+<li>全局优化
+<ul>
+<li>具体的优化实现基于数据流分析技术</li>
+<li>用以收集程序相关信息的算法</li>
+</ul></li>
+</ul>
+<h3 id="优化的主要来源">优化的主要来源</h3>
+<ul>
+<li>编译器只能通过一些相对低层的语义等价转换来优化代码
+<ul>
+<li><strong>冗余运算的原因</strong>
+<ul>
+<li>源程序中的冗余</li>
+<li>高级程序设计语言编程的副产品，如<code>A[i][j].f = 0; A[i][j].k = 1;</code></li>
+</ul></li>
+<li><strong>语义不变的优化</strong>
+<ul>
+<li>公共子表达式消除</li>
+<li>复制传播</li>
+<li>死代码消除</li>
+<li>常量折叠</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="基本优化技术">基本优化技术</h2>
+<h3 id="控制流图">控制流图</h3>
+<ul>
+<li><strong>控制流图(Control Flow Graph)</strong>
+<ul>
+<li>表示程序控制流的有向图(简称流图)</li>
+<li>流图的结点是基本块</li>
+<li>流图的边指明了哪些基本块可以跟在一个基本块之后运行
+<ul>
+<li>若基本块<code>Bi</code>最后一条指令执行后紧跟着执行的指令可能为基本块<code>Bj</code>，则图上有一条边<code>Bi -&gt; Bj</code></li>
+</ul></li>
+<li>图上的路径表示程序执行的路径，可作为优化与分析的基础
+<ul>
+<li>它给出了程序的控制流</li>
+<li>可以根据流图了解到一个值是否会被使用等信息</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Exmaple:</strong></p>
+<img src="/Course-Compiler-9/pic9-1.png" class="" title="pic9-1">
+</blockquote>
+<h3 id="全局公共子表达式">全局公共子表达式</h3>
+<ul>
+<li><strong>公共子表达式(Common Subexpression)</strong>
+<ul>
+<li>在某次出现之前必然已被计算过</li>
+<li>E的运算分量在该次计算之后没有被改变</li>
+</ul></li>
+<li>如果上次公共子表达式E值赋给了x，且x值没有被修改过，那么我们可使用x，而无需计算E</li>
+</ul>
+<blockquote>
+<p><strong>Example</strong></p>
+<img src="/Course-Compiler-9/pic9-2.png" class="" title="pic9-2">
+</blockquote>
+<h3 id="复制传播">复制传播</h3>
+<img src="/Course-Compiler-9/pic9-3.png" class="" title="pic9-3">
+<blockquote>
+<p><strong>Example</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = t3</span><br><span class="line">a[t4] = x</span><br></pre></td></tr></table></figure>
+<p>可以被优化为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = t3</span><br><span class="line">a[t4] = t3</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="死代码消除">死代码消除</h3>
+<img src="/Course-Compiler-9/pic9-4.png" class="" title="pic9-4">
+<h3 id="代码移动">代码移动</h3>
+<ul>
+<li>循环中的代码会被执行很多次
+<ul>
+<li><strong>循环不变表达式:</strong>
+循环的同一次运行的不同迭代中，表达式的值不变</li>
+</ul></li>
+<li>把循环不变表达式移动到循环入口之前计算可以提高效率
+<ul>
+<li><strong>循环入口:</strong> 进入循环的跳转都以这个入口为目标</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Example:</strong>
+<code>while (i &lt;= limit – 2)&#123;...&#125;</code></p>
+<p>如果<code>limit</code>在循环体内不会改变,
+则可在循环外计算<code>limit - 2</code></p>
+<p>可以优化为<code>t = limit - 2; while(i &lt;= t)&#123;...&#125;</code></p>
+</blockquote>
+<h3 id="归纳变量和强度消减">归纳变量和强度消减</h3>
+<img src="/Course-Compiler-9/pic9-5.png" class="" title="pic9-5">
+<h2 id="数据流分析">数据流分析</h2>
+<p>本处略, 参见静态分析中的数据流分析</p>
+<p><a href="https://cs.nju.edu.cn/tiantan/software-analysis/DFA-AP.pdf"
+class="uri">https://cs.nju.edu.cn/tiantan/software-analysis/DFA-AP.pdf</a></p>
+<p><a href="https://cs.nju.edu.cn/tiantan/software-analysis/DFA-FD.pdf"
+class="uri">https://cs.nju.edu.cn/tiantan/software-analysis/DFA-FD.pdf</a></p>
+<h2 id="部分冗余消除">部分冗余消除</h2>
+<h3 id="懒惰代码移动">懒惰代码移动</h3>
+<ul>
+<li><strong>目标</strong>
+<ul>
+<li>所有不复制代码就可消除的冗余计算都被消除</li>
+<li>优化后的代码不会执行原程序中不执行的任何计算</li>
+<li>表达式的计算应该<strong>尽量靠后</strong>，以利于寄存器的分配</li>
+</ul></li>
+<li><strong>冗余消除</strong>
+<ul>
+<li>完全冗余</li>
+<li>部分冗余：在流图中放置表达式<code>x + y</code>的拷贝，使得某处的<code>x + y</code>成为完全冗余，从而删除</li>
+</ul></li>
+<li><strong>基本步骤</strong>
+<ol type="1">
+<li>找出各程序点上预期执行的所有表达式</li>
+<li>在表达式被预期执行但是不可用的程序点上，放置表达式的计算</li>
+<li>把表达式尽量后延到某个程序点，在到达这个点的所有路径上，这个表达式在这个程序点之前被预期执行，但是还没有使用这个值</li>
+<li>消除只使用一次的临时变量</li>
+</ol></li>
+</ul>
+<h4 id="预期执行表达式">预期执行表达式</h4>
+<img src="/Course-Compiler-9/pic9-6.png" class="" title="pic9-6">
+<img src="/Course-Compiler-9/pic9-7.png" class="" title="pic9-7">
+<h4 id="可用表达式">可用表达式</h4>
+<ul>
+<li>和前面的可用表达式类似，但假设代码已经被复制到了预期执行点上</li>
+<li>表达式在基本块的出口处<strong>可用(available)</strong>的条件
+<ul>
+<li>在基本块的入口处可用，或在基本块的入口处的预期执行表达式中</li>
+<li>且没有被这个基本块杀死</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Exmaple:</strong></p>
+<img src="/Course-Compiler-9/pic9-8.png" class="" title="pic9-8">
+</blockquote>
+<h4 id="可后延表达式">可后延表达式</h4>
+<img src="/Course-Compiler-9/pic9-9.png" class="" title="pic9-9">
+<blockquote>
+<p><strong>Tips:</strong></p>
+<p>粗略地说，一个表达式将被放置在边界上，即一个表达式从可后延变成不可后延的地方</p>
+</blockquote>
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-9/pic9-10.png" class="" title="pic9-10">
+</blockquote>
+<h4 id="被使用的表达式">被使用的表达式</h4>
+<ul>
+<li>确定一个被引入的临时变量是否在它所在基本块之外的其它地方<strong>被使用(used)</strong>
+<ul>
+<li>对表达式的活跃性分析</li>
+<li>如果从程序点p出发的一条路径在表达式被重新求值之前使用了该表达式，那么该表达式在点p上被使用</li>
+</ul></li>
+</ul>
+<img src="/Course-Compiler-9/pic9-11.png" class="" title="pic9-11">
+<h2 id="流图中的循环">流图中的循环</h2>
+<ul>
+<li>循环的重要性
+<ul>
+<li>程序的大部分执行时间都花在循环上</li>
+<li>也是数据流分析需要经过若干次迭代的原因</li>
+</ul></li>
+</ul>
+<h3 id="支配结点">支配结点</h3>
+<img src="/Course-Compiler-9/pic9-12.png" class="" title="pic9-12">
+<h4 id="支配结点树">支配结点树</h4>
+<ul>
+<li><strong>支配结点树(Dominator Tree)</strong>可以表示支配关系
+<ul>
+<li>根结点：入口结点</li>
+<li>每个结点d支配且只支配树中的后代结点</li>
+</ul></li>
+<li><strong>直接支配结点(Immediate Dominator)</strong>
+<ul>
+<li>从入口结点到达<code>n</code>的任何路径(不含<code>n</code>)中，它是路径中最后一个支配<code>n</code>的结点</li>
+<li><code>n</code>的直接支配结点<code>m</code>具有如下性质：如果<code>d != n</code>且<code>d dom n</code>，那么<code>d dom m</code></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Example: 支配节点树</strong></p>
+<img src="/Course-Compiler-9/pic9-13.png" class="" title="pic9-13">
+</blockquote>
+<h4 id="寻找支配结点算法">寻找支配结点算法</h4>
+<img src="/Course-Compiler-9/pic9-14.png" class="" title="pic9-14">
+<img src="/Course-Compiler-9/pic9-15.png" class="" title="pic9-15">
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-9/pic9-16.png" class="" title="pic9-16">
+</blockquote>
+<h3 id="深度优先生成树">深度优先生成树</h3>
+<ul>
+<li><strong>深度优先搜索(Depth-First Search)</strong>
+<ul>
+<li>搜索过程从入口结点开始，并首先访问离入口结点最远的结点</li>
+</ul></li>
+<li><strong>深度优先生成树</strong>
+<ul>
+<li>一个深度优先过程中的搜索路线形成了一个<strong>深度优先生成树(Depth-First
+Spanning Tree, DFST)</strong></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-9/pic9-17.png" class="" title="pic9-17">
+</blockquote>
+<h4 id="深度优先排序">深度优先排序</h4>
+<ul>
+<li><strong>前序遍历</strong>
+<ul>
+<li>先访问一个结点，然后从左到右递归地访问该结点的子结点</li>
+</ul></li>
+<li><strong>后序遍历</strong>
+<ul>
+<li>首先递归地从左到右访问一个结点的子结点，然后访问该结点</li>
+</ul></li>
+<li><strong>深度优先排序(Depth-First Ordering)</strong>
+<ul>
+<li>首先访问一个结点，然后访问该结点的最右子结点，再访问这个子结点左边的子结点，依次类推(与后序遍历的顺序相反)</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-9/pic9-18.png" class="" title="pic9-18">
+<p>此处的遍历顺序是对于右边的深度优先生成树来说的</p>
+</blockquote>
+<h4 id="深度优先排序算法">深度优先排序算法</h4>
+<img src="/Course-Compiler-9/pic9-19.png" class="" title="pic9-19">
+<h4 id="流图中边的分类">流图中边的分类</h4>
+<img src="/Course-Compiler-9/pic9-20.png" class="" title="pic9-20">
+<h4 id="回边和可归约性">回边和可归约性</h4>
+<img src="/Course-Compiler-9/pic9-21.png" class="" title="pic9-21">
+<img src="/Course-Compiler-9/pic9-22.png" class="" title="pic9-22">
+<h4 id="流图的深度">流图的深度</h4>
+<img src="/Course-Compiler-9/pic9-23.png" class="" title="pic9-23">
+<h2 id="自然循环">自然循环</h2>
+<ul>
+<li>自然循环的性质
+<ul>
+<li>有一个唯一的入口结点，即<strong>循环头(header)</strong>，这个结点支配循环中的所有结点</li>
+<li>必然存在进入循环头的回边</li>
+</ul></li>
+<li><strong>自然循环(Natural Loop)</strong>的定义
+<ul>
+<li>给定回边<code>n -&gt; d</code>的自然循环是<code>d</code>，加上不经过<code>d</code>就能够到达<code>n</code>的结点的集合</li>
+<li><code>d</code>是这个循环的头</li>
+</ul></li>
+</ul>
+<h3 id="自然循环构造算法">自然循环构造算法</h3>
+<img src="/Course-Compiler-9/pic9-24.png" class="" title="pic9-24">
+<blockquote>
+<p><strong>Example:</strong></p>
+<img src="/Course-Compiler-9/pic9-25.png" class="" title="pic9-25">
+</blockquote>
+<h3 id="自然循环的性质">自然循环的性质</h3>
+<img src="/Course-Compiler-9/pic9-26.png" class="" title="pic9-26">
+<h3 id="循环头上头preheader">循环头上头(Preheader)</h3>
+<ul>
+<li>每个自然循环都有一个循环头header</li>
+<li>一些循环相关的优化(如循环不变量移动)需要在循环头之前插入代码</li>
+<li>常见做法是在循环头之前插入一个基本块(称为preheader)，用于存放相关的代码</li>
+</ul>
+<img src="/Course-Compiler-9/pic9-27.png" class="" title="pic9-27">
+]]></content>
+      <categories>
+        <category>课程笔记-编译原理</category>
+      </categories>
+      <tags>
+        <tag>课程笔记</tag>
+        <tag>编译原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>课程笔记-NJU编译原理 Ch8 代码生成</title>
     <url>/Course-Compiler-8/</url>
     <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch08
@@ -6876,293 +7166,66 @@ Acyclic Graph, DAG)</strong></li>
       </tags>
   </entry>
   <entry>
-    <title>课程笔记-NJU编译原理 Ch9 机器无关优化</title>
-    <url>/Course-Compiler-9/</url>
-    <content><![CDATA[<p><strong>NJU-CourseNote: Principles and Techniques of Compilers - Ch09
-Machine-Free Optimization.</strong></p>
+    <title>20260303一点碎碎念</title>
+    <url>/Journal-20260303/</url>
+    <content><![CDATA[<p><strong>算是对4-2的规划和本科生涯的总结吧(大概x.</strong></p>
 <span id="more"></span>
-<blockquote>
-<p><strong>Tips:</strong></p>
-<p>强烈建议修习李樾和谭添老师开设的《静态分析》课程.
-该部分的理论知识更贴近于静态分析的内容, 因此本笔记会略去相关内容.</p>
-<p><strong>课程链接</strong> <a
-href="https://tai-e.pascal-lab.net/lectures.html"
-class="uri">https://tai-e.pascal-lab.net/lectures.html</a></p>
-</blockquote>
-<h2 id="引言">引言</h2>
+<p>嗯...首先恭喜自己获得了offer, 然后理所当然的摆了接近半年(x.</p>
+<p>一路走来其实是有不少遗憾的, 想找借口也有很多, 比如新冠降智啦,
+某带专周所周知的课程设计啦, 总是忍不住出勤啦(awmc)什么的.
+但归根结底还是自己的问题, 能力和沉淀都不够,
+最后的结果也是咎由自取罢了.</p>
+<p>不过好在运气不错, 也算是即将结束自己的读书生涯,
+成为平凡社畜的一员打赛博螺丝了. 想即此多少有点感伤, 大学是有时间没钱,
+以后就要有钱没时间咯<del>(也可能是又没时间又没钱)</del></p>
+<p>事已至此, 拷打曾经的自己也是无济于事了. 该想想迫在眉睫的事情了,
+比如说毕业论文导师<del>(学院没有双选表, 没有兜底分配是什么鬼啊,
+纯纯草台班子, 两百个学生几十个导师我怎么知道哪些导师还有名额
+/续标识)</del>, 论文开题和做实验写论文,
+现在感觉大概率要做AI相关的学术垃圾, 但还锝先学基础知识, 真是头疼,
+为什么不能搞毕设毕业啊喂! (没招了投降了, 凑带专你赢了)</p>
+<p>哎哎纯发牢骚, 就业相关的基础也不扎实, 还要抽空学数据库, 学开发框架,
+形成记录文档, 自己想做的事情还要好多, 哎哎.
+总之简单列举一下自己想做的事情好了.</p>
+<h3 id="短期计划">短期计划</h3>
 <ul>
-<li>代码优化或者代码改进
-<ul>
-<li>在目标代码中消除不必要的指令</li>
-<li>把一个指令序列替换为一个完成相同功能的更快的指令序列</li>
-</ul></li>
-<li>全局优化
-<ul>
-<li>具体的优化实现基于数据流分析技术</li>
-<li>用以收集程序相关信息的算法</li>
-</ul></li>
+<li>确定毕业论文导师和开题选项</li>
 </ul>
-<h3 id="优化的主要来源">优化的主要来源</h3>
+<h3 id="学期计划">学期计划</h3>
 <ul>
-<li>编译器只能通过一些相对低层的语义等价转换来优化代码
-<ul>
-<li><strong>冗余运算的原因</strong>
-<ul>
-<li>源程序中的冗余</li>
-<li>高级程序设计语言编程的副产品，如<code>A[i][j].f = 0; A[i][j].k = 1;</code></li>
-</ul></li>
-<li><strong>语义不变的优化</strong>
-<ul>
-<li>公共子表达式消除</li>
-<li>复制传播</li>
-<li>死代码消除</li>
-<li>常量折叠</li>
-</ul></li>
-</ul></li>
+<li>恶补机器学习基础知识</li>
+<li>学习数据库</li>
+<li>学习开发框架(可选)</li>
+<li>毕业论文相关工作(阅读论文, coding实验, 论文编写)</li>
+<li>完成一些简单的项目(半年没怎么碰代码了, 需要找回手感)</li>
 </ul>
-<h2 id="基本优化技术">基本优化技术</h2>
-<h3 id="控制流图">控制流图</h3>
+<h3
+id="学期课余计划希望至少能做一点吧">学期课余计划(希望至少能做一点吧)</h3>
 <ul>
-<li><strong>控制流图(Control Flow Graph)</strong>
-<ul>
-<li>表示程序控制流的有向图(简称流图)</li>
-<li>流图的结点是基本块</li>
-<li>流图的边指明了哪些基本块可以跟在一个基本块之后运行
-<ul>
-<li>若基本块<code>Bi</code>最后一条指令执行后紧跟着执行的指令可能为基本块<code>Bj</code>，则图上有一条边<code>Bi -&gt; Bj</code></li>
-</ul></li>
-<li>图上的路径表示程序执行的路径，可作为优化与分析的基础
-<ul>
-<li>它给出了程序的控制流</li>
-<li>可以根据流图了解到一个值是否会被使用等信息</li>
-</ul></li>
-</ul></li>
+<li>手绘学习提上日程, 鸽了好久的百张临摹无论如何也要启动了</li>
+<li>重部署qq bot, 更新napcat和astrbot框架, 理解并记录框架结构,
+如有条件重构astr框架</li>
+<li>阅读书籍, 至少把手上的四本书看完</li>
+<li>部署手上的树莓派, 作为toy
+backend为云服务器提供简单的算力支持(还需要重修计网来完成桥接)</li>
+<li>学习舞萌dx自制, 小目标是写三张谱(感觉大概率是官谱高级抄手)</li>
 </ul>
-<blockquote>
-<p><strong>Exmaple:</strong></p>
-<img src="/Course-Compiler-9/pic9-1.png" class="" title="pic9-1">
-</blockquote>
-<h3 id="全局公共子表达式">全局公共子表达式</h3>
+<h3 id="可能是存在于幻想中的计划">可能是存在于幻想中的计划</h3>
 <ul>
-<li><strong>公共子表达式(Common Subexpression)</strong>
-<ul>
-<li>在某次出现之前必然已被计算过</li>
-<li>E的运算分量在该次计算之后没有被改变</li>
-</ul></li>
-<li>如果上次公共子表达式E值赋给了x，且x值没有被修改过，那么我们可使用x，而无需计算E</li>
+<li>学习游戏开发, 复现一些简单的经典游戏, 起草处女作策划案</li>
+<li>重构迁移博客和个人网站(hexo在当下感觉稍微有点不方便了,
+速度较慢且功能不够丰富, 不过说到底还是自己菜了没办法开发x),
+迁移后可以做一点神秘小网站</li>
+<li>学习日语, 成为日语领域大神x</li>
+<li>尝试写小说, 构建世界观并写一些oc小故事</li>
+<li>学习乐器(可能是电子钢琴), 学习编曲作曲</li>
 </ul>
-<blockquote>
-<p><strong>Example</strong></p>
-<img src="/Course-Compiler-9/pic9-2.png" class="" title="pic9-2">
-</blockquote>
-<h3 id="复制传播">复制传播</h3>
-<img src="/Course-Compiler-9/pic9-3.png" class="" title="pic9-3">
-<blockquote>
-<p><strong>Example</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = t3</span><br><span class="line">a[t4] = x</span><br></pre></td></tr></table></figure>
-<p>可以被优化为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = t3</span><br><span class="line">a[t4] = t3</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="死代码消除">死代码消除</h3>
-<img src="/Course-Compiler-9/pic9-4.png" class="" title="pic9-4">
-<h3 id="代码移动">代码移动</h3>
-<ul>
-<li>循环中的代码会被执行很多次
-<ul>
-<li><strong>循环不变表达式:</strong>
-循环的同一次运行的不同迭代中，表达式的值不变</li>
-</ul></li>
-<li>把循环不变表达式移动到循环入口之前计算可以提高效率
-<ul>
-<li><strong>循环入口:</strong> 进入循环的跳转都以这个入口为目标</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example:</strong>
-<code>while (i &lt;= limit – 2)&#123;...&#125;</code></p>
-<p>如果<code>limit</code>在循环体内不会改变,
-则可在循环外计算<code>limit - 2</code></p>
-<p>可以优化为<code>t = limit - 2; while(i &lt;= t)&#123;...&#125;</code></p>
-</blockquote>
-<h3 id="归纳变量和强度消减">归纳变量和强度消减</h3>
-<img src="/Course-Compiler-9/pic9-5.png" class="" title="pic9-5">
-<h2 id="数据流分析">数据流分析</h2>
-<p>本处略, 参见静态分析中的数据流分析</p>
-<p><a href="https://cs.nju.edu.cn/tiantan/software-analysis/DFA-AP.pdf"
-class="uri">https://cs.nju.edu.cn/tiantan/software-analysis/DFA-AP.pdf</a></p>
-<p><a href="https://cs.nju.edu.cn/tiantan/software-analysis/DFA-FD.pdf"
-class="uri">https://cs.nju.edu.cn/tiantan/software-analysis/DFA-FD.pdf</a></p>
-<h2 id="部分冗余消除">部分冗余消除</h2>
-<h3 id="懒惰代码移动">懒惰代码移动</h3>
-<ul>
-<li><strong>目标</strong>
-<ul>
-<li>所有不复制代码就可消除的冗余计算都被消除</li>
-<li>优化后的代码不会执行原程序中不执行的任何计算</li>
-<li>表达式的计算应该<strong>尽量靠后</strong>，以利于寄存器的分配</li>
-</ul></li>
-<li><strong>冗余消除</strong>
-<ul>
-<li>完全冗余</li>
-<li>部分冗余：在流图中放置表达式<code>x + y</code>的拷贝，使得某处的<code>x + y</code>成为完全冗余，从而删除</li>
-</ul></li>
-<li><strong>基本步骤</strong>
-<ol type="1">
-<li>找出各程序点上预期执行的所有表达式</li>
-<li>在表达式被预期执行但是不可用的程序点上，放置表达式的计算</li>
-<li>把表达式尽量后延到某个程序点，在到达这个点的所有路径上，这个表达式在这个程序点之前被预期执行，但是还没有使用这个值</li>
-<li>消除只使用一次的临时变量</li>
-</ol></li>
-</ul>
-<h4 id="预期执行表达式">预期执行表达式</h4>
-<img src="/Course-Compiler-9/pic9-6.png" class="" title="pic9-6">
-<img src="/Course-Compiler-9/pic9-7.png" class="" title="pic9-7">
-<h4 id="可用表达式">可用表达式</h4>
-<ul>
-<li>和前面的可用表达式类似，但假设代码已经被复制到了预期执行点上</li>
-<li>表达式在基本块的出口处<strong>可用(available)</strong>的条件
-<ul>
-<li>在基本块的入口处可用，或在基本块的入口处的预期执行表达式中</li>
-<li>且没有被这个基本块杀死</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Exmaple:</strong></p>
-<img src="/Course-Compiler-9/pic9-8.png" class="" title="pic9-8">
-</blockquote>
-<h4 id="可后延表达式">可后延表达式</h4>
-<img src="/Course-Compiler-9/pic9-9.png" class="" title="pic9-9">
-<blockquote>
-<p><strong>Tips:</strong></p>
-<p>粗略地说，一个表达式将被放置在边界上，即一个表达式从可后延变成不可后延的地方</p>
-</blockquote>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-9/pic9-10.png" class="" title="pic9-10">
-</blockquote>
-<h4 id="被使用的表达式">被使用的表达式</h4>
-<ul>
-<li>确定一个被引入的临时变量是否在它所在基本块之外的其它地方<strong>被使用(used)</strong>
-<ul>
-<li>对表达式的活跃性分析</li>
-<li>如果从程序点p出发的一条路径在表达式被重新求值之前使用了该表达式，那么该表达式在点p上被使用</li>
-</ul></li>
-</ul>
-<img src="/Course-Compiler-9/pic9-11.png" class="" title="pic9-11">
-<h2 id="流图中的循环">流图中的循环</h2>
-<ul>
-<li>循环的重要性
-<ul>
-<li>程序的大部分执行时间都花在循环上</li>
-<li>也是数据流分析需要经过若干次迭代的原因</li>
-</ul></li>
-</ul>
-<h3 id="支配结点">支配结点</h3>
-<img src="/Course-Compiler-9/pic9-12.png" class="" title="pic9-12">
-<h4 id="支配结点树">支配结点树</h4>
-<ul>
-<li><strong>支配结点树(Dominator Tree)</strong>可以表示支配关系
-<ul>
-<li>根结点：入口结点</li>
-<li>每个结点d支配且只支配树中的后代结点</li>
-</ul></li>
-<li><strong>直接支配结点(Immediate Dominator)</strong>
-<ul>
-<li>从入口结点到达<code>n</code>的任何路径(不含<code>n</code>)中，它是路径中最后一个支配<code>n</code>的结点</li>
-<li><code>n</code>的直接支配结点<code>m</code>具有如下性质：如果<code>d != n</code>且<code>d dom n</code>，那么<code>d dom m</code></li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example: 支配节点树</strong></p>
-<img src="/Course-Compiler-9/pic9-13.png" class="" title="pic9-13">
-</blockquote>
-<h4 id="寻找支配结点算法">寻找支配结点算法</h4>
-<img src="/Course-Compiler-9/pic9-14.png" class="" title="pic9-14">
-<img src="/Course-Compiler-9/pic9-15.png" class="" title="pic9-15">
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-9/pic9-16.png" class="" title="pic9-16">
-</blockquote>
-<h3 id="深度优先生成树">深度优先生成树</h3>
-<ul>
-<li><strong>深度优先搜索(Depth-First Search)</strong>
-<ul>
-<li>搜索过程从入口结点开始，并首先访问离入口结点最远的结点</li>
-</ul></li>
-<li><strong>深度优先生成树</strong>
-<ul>
-<li>一个深度优先过程中的搜索路线形成了一个<strong>深度优先生成树(Depth-First
-Spanning Tree, DFST)</strong></li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-9/pic9-17.png" class="" title="pic9-17">
-</blockquote>
-<h4 id="深度优先排序">深度优先排序</h4>
-<ul>
-<li><strong>前序遍历</strong>
-<ul>
-<li>先访问一个结点，然后从左到右递归地访问该结点的子结点</li>
-</ul></li>
-<li><strong>后序遍历</strong>
-<ul>
-<li>首先递归地从左到右访问一个结点的子结点，然后访问该结点</li>
-</ul></li>
-<li><strong>深度优先排序(Depth-First Ordering)</strong>
-<ul>
-<li>首先访问一个结点，然后访问该结点的最右子结点，再访问这个子结点左边的子结点，依次类推(与后序遍历的顺序相反)</li>
-</ul></li>
-</ul>
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-9/pic9-18.png" class="" title="pic9-18">
-<p>此处的遍历顺序是对于右边的深度优先生成树来说的</p>
-</blockquote>
-<h4 id="深度优先排序算法">深度优先排序算法</h4>
-<img src="/Course-Compiler-9/pic9-19.png" class="" title="pic9-19">
-<h4 id="流图中边的分类">流图中边的分类</h4>
-<img src="/Course-Compiler-9/pic9-20.png" class="" title="pic9-20">
-<h4 id="回边和可归约性">回边和可归约性</h4>
-<img src="/Course-Compiler-9/pic9-21.png" class="" title="pic9-21">
-<img src="/Course-Compiler-9/pic9-22.png" class="" title="pic9-22">
-<h4 id="流图的深度">流图的深度</h4>
-<img src="/Course-Compiler-9/pic9-23.png" class="" title="pic9-23">
-<h2 id="自然循环">自然循环</h2>
-<ul>
-<li>自然循环的性质
-<ul>
-<li>有一个唯一的入口结点，即<strong>循环头(header)</strong>，这个结点支配循环中的所有结点</li>
-<li>必然存在进入循环头的回边</li>
-</ul></li>
-<li><strong>自然循环(Natural Loop)</strong>的定义
-<ul>
-<li>给定回边<code>n -&gt; d</code>的自然循环是<code>d</code>，加上不经过<code>d</code>就能够到达<code>n</code>的结点的集合</li>
-<li><code>d</code>是这个循环的头</li>
-</ul></li>
-</ul>
-<h3 id="自然循环构造算法">自然循环构造算法</h3>
-<img src="/Course-Compiler-9/pic9-24.png" class="" title="pic9-24">
-<blockquote>
-<p><strong>Example:</strong></p>
-<img src="/Course-Compiler-9/pic9-25.png" class="" title="pic9-25">
-</blockquote>
-<h3 id="自然循环的性质">自然循环的性质</h3>
-<img src="/Course-Compiler-9/pic9-26.png" class="" title="pic9-26">
-<h3 id="循环头上头preheader">循环头上头(Preheader)</h3>
-<ul>
-<li>每个自然循环都有一个循环头header</li>
-<li>一些循环相关的优化(如循环不变量移动)需要在循环头之前插入代码</li>
-<li>常见做法是在循环头之前插入一个基本块(称为preheader)，用于存放相关的代码</li>
-</ul>
-<img src="/Course-Compiler-9/pic9-27.png" class="" title="pic9-27">
 ]]></content>
       <categories>
-        <category>课程笔记-编译原理</category>
+        <category>杂项</category>
       </categories>
       <tags>
-        <tag>课程笔记</tag>
-        <tag>编译原理</tag>
+        <tag>杂项</tag>
       </tags>
   </entry>
   <entry>
@@ -7947,310 +8010,6 @@ transferNonCallNode()</h3>
       </tags>
   </entry>
   <entry>
-    <title>NJU静态分析|A7-Alias-Aware Interprocedural Constant Propagation</title>
-    <url>/LabRecord-SPA-A7/</url>
-    <content><![CDATA[<p><strong>NJU Static Program Analysis | Assignment-7 Alias-Aware
-Interprocedural Constant Propagation.</strong></p>
-<span id="more"></span>
-<h2 id="实验目标">实验目标</h2>
-<p>基于<strong>tai-e</strong>框架实现带别名分析的过程间常量传播.</p>
-<h2 id="preparation">Preparation</h2>
-<ul>
-<li><p>将<code>A2/.../ConstantPropagation</code>复制到<code>A7/.../ConstantPropagation</code></p></li>
-<li><p>将<code>A4/.../InterConstantPropagation</code>复制到<code>A7/.../InterConstantPropagation</code></p></li>
-<li><p>将<code>A4/.../InterSolver</code>复制到<code>A7/InterSolver</code></p></li>
-<li><p>将<code>A6/.../cs/Solver</code>复制到<code>A7/.../cs/Solver</code></p></li>
-<li><p>将<code>A6/.../_2ObjSelector</code>复制到<code>A7/.../_2ObjSelector</code></p>
-<blockquote>
-<p><strong>Tips:</strong>
-<code>plan.yml</code>已经配置好了<code>cs: 2-obj</code>,
-如果本地测试中想要使用其他策略,
-需要将对应<code>Selector</code>复制到本次实验目录,
-并配置<code>plan.yml</code>(方法已在A6实验指南中给出)</p>
-</blockquote></li>
-</ul>
-<p><strong><em>注意:</em></strong>
-除去指针分析的部分作为结果查询字段指向外,
-其余文件都可以是本次实验的更改范围.</p>
-<h2 id="review">Review</h2>
-<p>由于要设计算法, 不妨先复习一下A2和A4中常量传播算法和应用范围.</p>
-<ul>
-<li><p>常量传播算法是<strong>Forward &amp; Must Analysis</strong>.
-迭代至收敛至"最大"不动点.</p>
-<blockquote>
-<p><strong>Additional:</strong></p>
-<p>迭代算法框架如下:</p>
-<img src="/LabRecord-SPA-A7/pic1-1.png" class="" title="pic1-1">
-<p>活跃变量分析的迭代示例:</p>
-<img src="/LabRecord-SPA-A7/pic1-2.png" class="" title="pic1-2">
-</blockquote></li>
-<li><p>常量传播算法中对数值的抽象为<code>UNDEF-&gt;CONST-&gt;NAC</code>.</p></li>
-<li><p>由于数据流动的"单调性", <strong>Meet</strong>要满足</p>
-<blockquote>
-<img src="/LabRecord-SPA-A7/pic1-3.png" class="" title="pic1-3">
-</blockquote></li>
-<li><p>语句处理的<strong>Transfer Function</strong></p>
-<blockquote>
-<img src="/LabRecord-SPA-A7/pic1-4.png" class="" title="pic1-4">
-</blockquote></li>
-</ul>
-<blockquote>
-<p>在A2中,
-处理范围仅限于<code>DefinitionStmt</code>中的变量和表达式部分,
-对于诸如<strong>字段, 数组</strong>部分采取保守策略,
-赋值为<code>NAC</code>; 分析范围仅局限于<strong>过程内分析</strong>,
-此时为方法调用的返回值采取保守策略, 赋值为<code>NAC</code>.</p>
-<p>在A4中, 同样只处理变量, 但分析范围扩展为过程间分析,
-需要完成对方法调用传参, 传返回值, 为了完成过程间的数据流传递,
-加入了<strong>Transfer Edge</strong>.</p>
-<p>由于方法调用的<strong>动态时确认</strong>,
-需要知道在这个调用点<code>callsite</code>,
-真正的<code>callee</code>是什么,
-因此建立<strong>CallGraph</strong>为<strong>ICFG(inter-procedural
-control-flow graph)</strong>
-提供调用图信息.(你应该还记得在A4的<code>CHABuilder</code>完成前,
-<code>Assignment</code>不会输出任何ICFG信息)</p>
-<img src="/LabRecord-SPA-A7/pic1-5.png" class="" title="pic1-5">
-</blockquote>
-<h2 id="requirement-analysis">Requirement &amp; Analysis</h2>
-<p>现在来看看实验要求和手上的工具, 看看如何处理新需求.</p>
-<h3 id="常量处理范围">常量处理范围</h3>
-<p>在之前的实验中,
-忽略了<strong>字段Field</strong>和<strong>数组Array</strong>的分析,
-原因在本次实验已经指出, 是<strong>别名Alias</strong>所引起的,
-由于多个变量(指针)可以指向同一个对象, 只有当明确指针所指向对象时,
-才能为其赋值<strong>常量Constant</strong>.</p>
-<p>需要指出的是, 本次实验仍然<strong>只需要处理int类型的变量</strong>.
-A2中已经提供了足够好用的<code>canHoldInt()</code>.</p>
-<p>另外,
-指南上讲述了实验框架中会忽略<strong>静态字段的初始化</strong>的情况,
-因其在控制流图中不可达, 不需要对其进行额外的处理.</p>
-<h3 id="域分析范围">域分析范围</h3>
-<p>A4开始采用了一种精度较低的方法CHA构建<strong>CallGraph</strong>; A5,
-A6使用了精度更高的指针分析技术构建<strong>CallGraph</strong>.</p>
-<p>本次实验仍然是处理<strong>过程间常量传播</strong>,
-由于<strong>CallGraph</strong>更加精确, 分析精度相较于A4也会更进一步.
-同时,
-在Tai-e框架下完成实验不需要关注<strong>ICFG</strong>如何获得<strong>CG</strong>信息(如有兴趣可自行阅读框架代码).</p>
-<h3 id="pointeranalysisresult">PointerAnalysisResult</h3>
-<p>框架代码提供了<code>class PointerAnalysisResult</code>用来获取指针分析的结果,
-该部分的初始化在<code>InterConstantPropagation</code>中的<code>initial()</code>中完成.</p>
-<p>其中包含的API说明都较为清晰, 笔者在此不过多赘述.</p>
-<h3 id="别名分析">别名分析</h3>
-<p>该部分实验指南已经给出了一个比较简单的实现方法,
-<strong>Pointer指向的PointsToSet存在交集,
-则认为二者互为别名.</strong></p>
-<p>换个说法, <strong>存在两个或两个以上Pointer指向同一个Obj,
-则认为二者互为别名.</strong></p>
-<p>实验指南中讲述了为什么只需要<code>Pointer</code>而不是<code>CSPointer</code>的原因</p>
-<p>笔者在此给出两个简单的算法思路:</p>
-<ul>
-<li><p>遍历所有的<code>Pointer1</code>与<code>Pointer2</code>,
-获取<code>PointsToSet</code>,
-如果有交集就加入<code>Multiple Map</code>中,
-简单地以<code>&lt;Var, Var&gt;</code>的形式维护alias信息.</p></li>
-<li><p>遍历所有的<code>Pointer</code>和对应的<code>PointsToSet</code>,
-维护一个<code>&lt;Obj, Var&gt;</code>结构,
-对于<code>&lt;Obj, Var1&gt;</code>和<code>&lt;Obj, Var2&gt;</code>,
-<code>Var1</code>和<code>Var2</code>互为别名.</p></li>
-</ul>
-<blockquote>
-<p><strong>Tips: 框架代码的做法</strong></p>
-<p>如果你有阅读过框架代码或者"意外"跳转到<code>class Maps</code>,
-便会发现,
-Tai-e框架中已经配置了好了获取基本数据结构的API(被TT深不可测的代码力所折服).
-可以通过简单的<code>Maps.newMultiMap()</code>获取实例化数据结构. 当然,
-也可以选择自己实例化Map的结构.</p>
-<p>不过需要注意的是, 该部分代码<strong>不是显式给出的</strong>,
-而是封装在<code>tai-e-assignment.jar</code>中,
-可以选择阅读科研版doc或者阅读反编译后的源码(该部分结构简单,
-即便无注释也可以理解)</p>
-</blockquote>
-<h3 id="field处理">Field处理</h3>
-<p>在这里会遇到第一个头疼的点: <strong>ConstPropagation是流敏感的,
-但PointerAnalysis是流不敏感的.</strong></p>
-<p>尽管别名信息不依赖于常量传播, 但对象存储的值来源常量传播. 因此,
-需要先理清楚如何处理<code>Load</code>和<code>Store</code>.(<strong>注意:</strong>
-笔者以下论述基于InstanceField,
-SaticField的处理只会比InstanceField简单)</p>
-<blockquote>
-<p><strong>Try: 先收集所有的Store再更新给Load?</strong></p>
-<p>这是符合流不敏感的思路,
-但是在ConstPropagation的流敏感框架中非常难以实现. 在迭代过程中,
-Store的<strong>右值</strong>可能会改变,
-Store的变化也会引起非Field和Array变量的变化. 所以,
-Field和Array的更新也需要采用流敏感框架中的迭代方法.</p>
-</blockquote>
-<p>现在来分析如何用迭代的方法处理Field.</p>
-<ul>
-<li><p>对于Load, 因为迭代的缘故, 可以先假设后续的处理会正确的广播到此处,
-更新Load的值. 因此只需要简单的传播到def即可.</p></li>
-<li><p>对于Store, 假设已经有了一个对应的Load结构,
-Store产生了更新该如何广播?
-worklist加入<code>Load Stmt</code>迭代即可.</p></li>
-<li><p>同时, 需要注意InstanceFiled的特性,
-考虑别名信息进行更新即可.</p></li>
-</ul>
-<h3 id="array处理">Array处理</h3>
-<p>Array可以理解成一种特殊的InstanceField, 不过需要注意何时互为别名,
-只有在互为别名的情况下才考虑广播.</p>
-<h3 id="小结">小结</h3>
-<p>至此已经有了一个对完成本次实验的一个基本思路了,
-接下来开始考虑一些完成实验的细节.</p>
-<h2 id="算法设计">算法设计</h2>
-<blockquote>
-<p><strong>Tips:</strong> 笔者在此章节不详谈实现上的细节, 该部分在<a
-href="#拾遗-tai-e-faq-you-need-to-know">拾遗</a>章节分点给出. 并且,
-由于框架代码的特性, 算法的实现可能与思路有所出入.</p>
-</blockquote>
-<blockquote>
-<p><strong>Question: 这次新写的代码和A4冲突吗?</strong></p>
-<p>这个问题实际上是在问:
-Field和Array的传播是否会影响到过程间常量传播的<strong>EdgeTransfer</strong>.</p>
-<p>答案自然是否定的, Field和Array可以理解成一种特殊的Var,
-尽管其结果不需要呈现在<code>DataFlowResult</code>中. 可以自然地得出结论:
-加入Field和Array并不会改变A4的算法框架.</p>
-<p>也即,
-本次实验所设计的算法是对<strong>TransferNonCallNode(A2-IntraConstPropagation)</strong>的补全.</p>
-</blockquote>
-<p>所以, 本次算法的基本框架可以表示为:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">transferNonCallNode</span><span class="params">(Stmt stmt, CPFact in, CPFact out)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> LoadField)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> StoreFiled)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> LoadArray)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> StoreArray)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        cp.transferNode(); <span class="comment">//form A2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然,
-你也可以选择将这些语句的处理直接整合进<code>ConstantPropagation</code>(前提是A2的实现最好确保是正确的).</p>
-<blockquote>
-<p><strong>Tips:</strong>
-还记得在A5和A6中是如何优雅地处理繁杂的<code>instanceof</code>判断吗? 对,
-就是<strong>访问者模式</strong>, 在本次实验中,
-仍然可以选择这样的方法实现算法.
-所有的<code>Stmt</code>类中都已经内置了<code>accept()</code>API可供访问,
-只需要新的访问类继承自<code>StmtVisitor</code>即可.</p>
-</blockquote>
-<h3
-id="field-value的存储和广播"><code>&lt;Field, Value&gt;</code>的存储和广播</h3>
-<blockquote>
-<p><strong>Tips:</strong> 在Tai-e框架中, 将Array等效抽象成Field,
-并不对<strong>Index</strong>做具体的区分(对<code>a[i]</code>和<code>a[j]</code>的store操作视为对同一对象<code>a[...]</code>的store操作).
-尽管如此,
-index信息也有助于分区<code>a[i]</code>和<code>a[j]</code>是否为别名,
-从而决定是否需要广播. 因此, Array的维护会比Field更复杂, 但基本原理一致,
-笔者在此章节<strong>不再</strong>赘述Array应如何处理.</p>
-</blockquote>
-<p>在之前的分析中已经获知了<a href="#别名分析">Alias信息</a>,
-该部分算法的实现依赖于别名信息.</p>
-<p>笔者在此给出两个算法思路抛砖引玉:</p>
-<h4 id="只考虑alias层">只考虑Alias层</h4>
-<p>这是个朴实但简单的想法:
-所有的<code>y = x.f</code>来自也只来自<code>x.f = z</code>,
-这句"废话"意味着什么?</p>
-<p><strong>意味着其实根本就不需要考虑<code>x.f</code>或者说<code>oi.f</code>的取值,
-如果想知道<code>y</code>可能的value值,
-只需要<code>meet</code>所有的<code>z</code>就可以了.</strong></p>
-<p>根据这个思路, 有:</p>
-<ul>
-<li><p>对于<code>LoadField</code>,
-找到所有与<code>x.f</code>相关的<code>x'.f = z</code>,
-其中<code>x'</code>是<code>x</code>的别名, <strong>meet</strong>
-<code>z</code>的<code>value</code>值.
-如果<code>y = meet(foreach(z))</code>有更新,
-将其后续<code>Node</code>加入<code>workList</code>.</p></li>
-<li><p>对于<code>StoreField</code>,
-找到所有与<code>x.f</code>相关的<code>y = x'.f</code>,
-其中<code>x'</code>是<code>x</code>的别名,
-将这些<code>StoreField</code>加入<code>workList</code>.</p></li>
-</ul>
-<p>这个算法的优点是实现简单, 但缺点是效率低,
-展现着独属于暴力的美学魅力.</p>
-<p>其关键在于如何维护<code>&lt;Field, Stmt&gt;</code>的结构,
-框架代码中有不少细节需要关注.</p>
-<h4 id="考虑mapobj-value">考虑<code>Map&lt;Obj, Value&gt;</code></h4>
-<p><code>x.f</code>中的<code>x</code>是<code>Pointer</code>,
-真正存储Value值的是<code>Obj</code>,
-因此可以考虑维护<code>&lt;Var, Obj&gt;</code>和<code>&lt;Obj.field, Value&gt;</code>两个Map,
-<code>Load</code>和<code>Store</code>均对Map进行操作.</p>
-<p>该思路避免了之前算法中的大量冗余计算(笔者自测跑完本地测试需要近30s),
-提高了效率, 但Map的维护较为复杂.</p>
-<p>具体处理<code>LoadField</code>和<code>StoreField</code>时,
-只需要将信息更新到<code>Map&lt;Obj.field, Value&gt;</code>即可,
-广播逻辑与之前相同.</p>
-<p>不过需要注意的是, 由于指针分析结果是流不敏感的,
-对于<code>Store</code>操作只使用<code>meet</code>而不是<code>kill</code>.</p>
-<blockquote>
-<p><strong>Question: Store语句应该在何时广播?</strong></p>
-<p>答案是当<code>outFact</code>改变的时候广播,
-或者具体来说,是<code>x.f = y</code>的<code>y</code>的value值改变时进行广播.</p>
-</blockquote>
-<h2 id="拾遗-tai-e-faq-you-need-to-know">拾遗: Tai-e FAQ You Need to
-Know</h2>
-<h3 id="cs-ci-pointer-analysis">CS &amp; CI Pointer Analysis</h3>
-<p>CallGraph建立的ICFG是没有上下文的,
-这和常量传播不关注上下文的行为一致.
-但对<code>Pointer</code>指向信息可以使用带上下文的分析结果以获取更高的精度,
-这与ICFG并不冲突.</p>
-<h3 id="ir">IR</h3>
-<p>IR的使用为本次实验做了大量简化, 你可能会疑惑,
-对于<code>x.f = y.g</code>这样的操作,
-上述算法框架可以覆盖到该语句吗?</p>
-<p>实际上, <code>x.f = y.g</code>在IR中会被转化为:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[<span class="number">21</span><span class="meta">@L16</span>] temp$<span class="number">8</span> = x.&lt;X: <span class="type">int</span> f&gt;;</span><br><span class="line">[<span class="number">22</span><span class="meta">@L16</span>] y.&lt;Y: <span class="type">int</span> g&gt; = temp$<span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-<p>与之类似的, <code>Invoke</code>,
-<code>BinaryExp</code>也具有相同的特性.</p>
-<p>如果不确定某条语句在框架中如何表示,
-可以自己设计测试样例通过Assignment分析其结果.</p>
-<p>回到这次实验,
-可以简单认为<strong>所有<code>AssignStmt</code>的左值和右值中最多只有一个是Field/Array,
-另外一个是Var</strong>.</p>
-<h3
-id="intersolver与interconstpropagation">InterSolver与InterConstPropagation</h3>
-<p>InterConstPropagation的字段可以简单的通过参数的方式进行传递,
-但InterSolver与InterConstPropagation间该如何通信?</p>
-<p>注意到<code>InterConstantPropagation extends AbstractInterDataflowAnalysis</code>,
-其父类中含有字段<code>InterSolver solver</code>,
-可以通过<code>solver.xxx</code>实现通信.</p>
-<p>对于其中的<code>private</code>和<code>protected</code>字段,
-可以为其编写一个<code>public XType getX()</code>API提供访问接口.(如<code>result</code>,
-<code>worklist</code>等).</p>
-<h3 id="数据结构map">数据结构Map</h3>
-<p>本次实验中存在大量"一对多"的联系,
-可以考虑选取<code>MultiMap</code>进行维护.
-其中提供了不少相当便捷的API.</p>
-<h3 id="relevantstmt">relevantStmt</h3>
-<p>如果能把字段中的Var取出,
-可以使用其中的API<code>var.getStoreField()</code>等API方便的获取有关语句,
-不过对Static就没有太好的方法了,
-笔者采用的是遍历<code>icfg.getNodes()</code>.</p>
-<h3 id="fieldstmt-fieldaccesss-filedref-jfield">FieldStmt, FieldAccesss,
-FiledRef &amp; JField</h3>
-<p>Tai-e框架中的Field的处理要比Array复杂不少, 笔者在此做简要解释.</p>
-<ul>
-<li><p>JField的结构是<code>&lt;Type: FieldName&gt;</code>,
-可以使用<code>FieldStmt.getRef().resolve()</code>得到.
-当使用Stmt解析出JField进行比较时会获取更高的精度.
-(笔者因为这个卡了hidden test)</p></li>
-<li><p>如果想获取Field的Obj(即base部分),
-可以使用<code>FieldStmt.getFieldAccess().getBase()</code>.
-不过需要先转换为<code>InstanceFieldAccess</code>类型才能使用<code>getBase()</code>的API.</p>
-<blockquote>
-<p><strong>Tips:</strong> 笔者在此吐槽一句,
-为何关于Field的API都封装在了<code>tai-e-Assignemnt.jar</code>中而不是显式的给出,
-增大了如何处理Field的学习成本.</p>
-</blockquote></li>
-</ul>
-<h3 id="arraystmt">ArrayStmt</h3>
-<p>Array的结构相对简单一点,
-通过<code>getAccess()</code>就可以简单的<code>access.getBase/Index()</code>获取需要的信息.</p>
-<h2 id="总结">总结</h2>
-<p>恭喜挺过了本学期SPA的实验大魔王, 自己设计算法还是颇有难度的,
-接下来迎接较为轻松的A8吧. (^_^)</p>
-]]></content>
-      <categories>
-        <category>实验记录-NJU静态分析</category>
-      </categories>
-      <tags>
-        <tag>NJU</tag>
-        <tag>静态分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NJU静态分析|A5-Context Insensitive Pointer Analysis</title>
     <url>/LabRecord-SPA-A5/</url>
     <content><![CDATA[<p><strong>NJU Static Program Analysis | Assignment-5 Context
@@ -8566,6 +8325,310 @@ A4中通过<code>CallGraphs.getCallKind()</code>来获取<code>CallKind</code>,
 <h2 id="总结">总结</h2>
 <p>指针分析还是相当硬核的, 尽管实验框架已经化简了其中部分内容,
 这仍然是一个较困难的实验.</p>
+]]></content>
+      <categories>
+        <category>实验记录-NJU静态分析</category>
+      </categories>
+      <tags>
+        <tag>NJU</tag>
+        <tag>静态分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NJU静态分析|A7-Alias-Aware Interprocedural Constant Propagation</title>
+    <url>/LabRecord-SPA-A7/</url>
+    <content><![CDATA[<p><strong>NJU Static Program Analysis | Assignment-7 Alias-Aware
+Interprocedural Constant Propagation.</strong></p>
+<span id="more"></span>
+<h2 id="实验目标">实验目标</h2>
+<p>基于<strong>tai-e</strong>框架实现带别名分析的过程间常量传播.</p>
+<h2 id="preparation">Preparation</h2>
+<ul>
+<li><p>将<code>A2/.../ConstantPropagation</code>复制到<code>A7/.../ConstantPropagation</code></p></li>
+<li><p>将<code>A4/.../InterConstantPropagation</code>复制到<code>A7/.../InterConstantPropagation</code></p></li>
+<li><p>将<code>A4/.../InterSolver</code>复制到<code>A7/InterSolver</code></p></li>
+<li><p>将<code>A6/.../cs/Solver</code>复制到<code>A7/.../cs/Solver</code></p></li>
+<li><p>将<code>A6/.../_2ObjSelector</code>复制到<code>A7/.../_2ObjSelector</code></p>
+<blockquote>
+<p><strong>Tips:</strong>
+<code>plan.yml</code>已经配置好了<code>cs: 2-obj</code>,
+如果本地测试中想要使用其他策略,
+需要将对应<code>Selector</code>复制到本次实验目录,
+并配置<code>plan.yml</code>(方法已在A6实验指南中给出)</p>
+</blockquote></li>
+</ul>
+<p><strong><em>注意:</em></strong>
+除去指针分析的部分作为结果查询字段指向外,
+其余文件都可以是本次实验的更改范围.</p>
+<h2 id="review">Review</h2>
+<p>由于要设计算法, 不妨先复习一下A2和A4中常量传播算法和应用范围.</p>
+<ul>
+<li><p>常量传播算法是<strong>Forward &amp; Must Analysis</strong>.
+迭代至收敛至"最大"不动点.</p>
+<blockquote>
+<p><strong>Additional:</strong></p>
+<p>迭代算法框架如下:</p>
+<img src="/LabRecord-SPA-A7/pic1-1.png" class="" title="pic1-1">
+<p>活跃变量分析的迭代示例:</p>
+<img src="/LabRecord-SPA-A7/pic1-2.png" class="" title="pic1-2">
+</blockquote></li>
+<li><p>常量传播算法中对数值的抽象为<code>UNDEF-&gt;CONST-&gt;NAC</code>.</p></li>
+<li><p>由于数据流动的"单调性", <strong>Meet</strong>要满足</p>
+<blockquote>
+<img src="/LabRecord-SPA-A7/pic1-3.png" class="" title="pic1-3">
+</blockquote></li>
+<li><p>语句处理的<strong>Transfer Function</strong></p>
+<blockquote>
+<img src="/LabRecord-SPA-A7/pic1-4.png" class="" title="pic1-4">
+</blockquote></li>
+</ul>
+<blockquote>
+<p>在A2中,
+处理范围仅限于<code>DefinitionStmt</code>中的变量和表达式部分,
+对于诸如<strong>字段, 数组</strong>部分采取保守策略,
+赋值为<code>NAC</code>; 分析范围仅局限于<strong>过程内分析</strong>,
+此时为方法调用的返回值采取保守策略, 赋值为<code>NAC</code>.</p>
+<p>在A4中, 同样只处理变量, 但分析范围扩展为过程间分析,
+需要完成对方法调用传参, 传返回值, 为了完成过程间的数据流传递,
+加入了<strong>Transfer Edge</strong>.</p>
+<p>由于方法调用的<strong>动态时确认</strong>,
+需要知道在这个调用点<code>callsite</code>,
+真正的<code>callee</code>是什么,
+因此建立<strong>CallGraph</strong>为<strong>ICFG(inter-procedural
+control-flow graph)</strong>
+提供调用图信息.(你应该还记得在A4的<code>CHABuilder</code>完成前,
+<code>Assignment</code>不会输出任何ICFG信息)</p>
+<img src="/LabRecord-SPA-A7/pic1-5.png" class="" title="pic1-5">
+</blockquote>
+<h2 id="requirement-analysis">Requirement &amp; Analysis</h2>
+<p>现在来看看实验要求和手上的工具, 看看如何处理新需求.</p>
+<h3 id="常量处理范围">常量处理范围</h3>
+<p>在之前的实验中,
+忽略了<strong>字段Field</strong>和<strong>数组Array</strong>的分析,
+原因在本次实验已经指出, 是<strong>别名Alias</strong>所引起的,
+由于多个变量(指针)可以指向同一个对象, 只有当明确指针所指向对象时,
+才能为其赋值<strong>常量Constant</strong>.</p>
+<p>需要指出的是, 本次实验仍然<strong>只需要处理int类型的变量</strong>.
+A2中已经提供了足够好用的<code>canHoldInt()</code>.</p>
+<p>另外,
+指南上讲述了实验框架中会忽略<strong>静态字段的初始化</strong>的情况,
+因其在控制流图中不可达, 不需要对其进行额外的处理.</p>
+<h3 id="域分析范围">域分析范围</h3>
+<p>A4开始采用了一种精度较低的方法CHA构建<strong>CallGraph</strong>; A5,
+A6使用了精度更高的指针分析技术构建<strong>CallGraph</strong>.</p>
+<p>本次实验仍然是处理<strong>过程间常量传播</strong>,
+由于<strong>CallGraph</strong>更加精确, 分析精度相较于A4也会更进一步.
+同时,
+在Tai-e框架下完成实验不需要关注<strong>ICFG</strong>如何获得<strong>CG</strong>信息(如有兴趣可自行阅读框架代码).</p>
+<h3 id="pointeranalysisresult">PointerAnalysisResult</h3>
+<p>框架代码提供了<code>class PointerAnalysisResult</code>用来获取指针分析的结果,
+该部分的初始化在<code>InterConstantPropagation</code>中的<code>initial()</code>中完成.</p>
+<p>其中包含的API说明都较为清晰, 笔者在此不过多赘述.</p>
+<h3 id="别名分析">别名分析</h3>
+<p>该部分实验指南已经给出了一个比较简单的实现方法,
+<strong>Pointer指向的PointsToSet存在交集,
+则认为二者互为别名.</strong></p>
+<p>换个说法, <strong>存在两个或两个以上Pointer指向同一个Obj,
+则认为二者互为别名.</strong></p>
+<p>实验指南中讲述了为什么只需要<code>Pointer</code>而不是<code>CSPointer</code>的原因</p>
+<p>笔者在此给出两个简单的算法思路:</p>
+<ul>
+<li><p>遍历所有的<code>Pointer1</code>与<code>Pointer2</code>,
+获取<code>PointsToSet</code>,
+如果有交集就加入<code>Multiple Map</code>中,
+简单地以<code>&lt;Var, Var&gt;</code>的形式维护alias信息.</p></li>
+<li><p>遍历所有的<code>Pointer</code>和对应的<code>PointsToSet</code>,
+维护一个<code>&lt;Obj, Var&gt;</code>结构,
+对于<code>&lt;Obj, Var1&gt;</code>和<code>&lt;Obj, Var2&gt;</code>,
+<code>Var1</code>和<code>Var2</code>互为别名.</p></li>
+</ul>
+<blockquote>
+<p><strong>Tips: 框架代码的做法</strong></p>
+<p>如果你有阅读过框架代码或者"意外"跳转到<code>class Maps</code>,
+便会发现,
+Tai-e框架中已经配置了好了获取基本数据结构的API(被TT深不可测的代码力所折服).
+可以通过简单的<code>Maps.newMultiMap()</code>获取实例化数据结构. 当然,
+也可以选择自己实例化Map的结构.</p>
+<p>不过需要注意的是, 该部分代码<strong>不是显式给出的</strong>,
+而是封装在<code>tai-e-assignment.jar</code>中,
+可以选择阅读科研版doc或者阅读反编译后的源码(该部分结构简单,
+即便无注释也可以理解)</p>
+</blockquote>
+<h3 id="field处理">Field处理</h3>
+<p>在这里会遇到第一个头疼的点: <strong>ConstPropagation是流敏感的,
+但PointerAnalysis是流不敏感的.</strong></p>
+<p>尽管别名信息不依赖于常量传播, 但对象存储的值来源常量传播. 因此,
+需要先理清楚如何处理<code>Load</code>和<code>Store</code>.(<strong>注意:</strong>
+笔者以下论述基于InstanceField,
+SaticField的处理只会比InstanceField简单)</p>
+<blockquote>
+<p><strong>Try: 先收集所有的Store再更新给Load?</strong></p>
+<p>这是符合流不敏感的思路,
+但是在ConstPropagation的流敏感框架中非常难以实现. 在迭代过程中,
+Store的<strong>右值</strong>可能会改变,
+Store的变化也会引起非Field和Array变量的变化. 所以,
+Field和Array的更新也需要采用流敏感框架中的迭代方法.</p>
+</blockquote>
+<p>现在来分析如何用迭代的方法处理Field.</p>
+<ul>
+<li><p>对于Load, 因为迭代的缘故, 可以先假设后续的处理会正确的广播到此处,
+更新Load的值. 因此只需要简单的传播到def即可.</p></li>
+<li><p>对于Store, 假设已经有了一个对应的Load结构,
+Store产生了更新该如何广播?
+worklist加入<code>Load Stmt</code>迭代即可.</p></li>
+<li><p>同时, 需要注意InstanceFiled的特性,
+考虑别名信息进行更新即可.</p></li>
+</ul>
+<h3 id="array处理">Array处理</h3>
+<p>Array可以理解成一种特殊的InstanceField, 不过需要注意何时互为别名,
+只有在互为别名的情况下才考虑广播.</p>
+<h3 id="小结">小结</h3>
+<p>至此已经有了一个对完成本次实验的一个基本思路了,
+接下来开始考虑一些完成实验的细节.</p>
+<h2 id="算法设计">算法设计</h2>
+<blockquote>
+<p><strong>Tips:</strong> 笔者在此章节不详谈实现上的细节, 该部分在<a
+href="#拾遗-tai-e-faq-you-need-to-know">拾遗</a>章节分点给出. 并且,
+由于框架代码的特性, 算法的实现可能与思路有所出入.</p>
+</blockquote>
+<blockquote>
+<p><strong>Question: 这次新写的代码和A4冲突吗?</strong></p>
+<p>这个问题实际上是在问:
+Field和Array的传播是否会影响到过程间常量传播的<strong>EdgeTransfer</strong>.</p>
+<p>答案自然是否定的, Field和Array可以理解成一种特殊的Var,
+尽管其结果不需要呈现在<code>DataFlowResult</code>中. 可以自然地得出结论:
+加入Field和Array并不会改变A4的算法框架.</p>
+<p>也即,
+本次实验所设计的算法是对<strong>TransferNonCallNode(A2-IntraConstPropagation)</strong>的补全.</p>
+</blockquote>
+<p>所以, 本次算法的基本框架可以表示为:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">transferNonCallNode</span><span class="params">(Stmt stmt, CPFact in, CPFact out)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> LoadField)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> StoreFiled)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> LoadArray)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (stmt <span class="keyword">instanceof</span> StoreArray)&#123;</span><br><span class="line">        <span class="comment">//handle</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        cp.transferNode(); <span class="comment">//form A2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然,
+你也可以选择将这些语句的处理直接整合进<code>ConstantPropagation</code>(前提是A2的实现最好确保是正确的).</p>
+<blockquote>
+<p><strong>Tips:</strong>
+还记得在A5和A6中是如何优雅地处理繁杂的<code>instanceof</code>判断吗? 对,
+就是<strong>访问者模式</strong>, 在本次实验中,
+仍然可以选择这样的方法实现算法.
+所有的<code>Stmt</code>类中都已经内置了<code>accept()</code>API可供访问,
+只需要新的访问类继承自<code>StmtVisitor</code>即可.</p>
+</blockquote>
+<h3
+id="field-value的存储和广播"><code>&lt;Field, Value&gt;</code>的存储和广播</h3>
+<blockquote>
+<p><strong>Tips:</strong> 在Tai-e框架中, 将Array等效抽象成Field,
+并不对<strong>Index</strong>做具体的区分(对<code>a[i]</code>和<code>a[j]</code>的store操作视为对同一对象<code>a[...]</code>的store操作).
+尽管如此,
+index信息也有助于分区<code>a[i]</code>和<code>a[j]</code>是否为别名,
+从而决定是否需要广播. 因此, Array的维护会比Field更复杂, 但基本原理一致,
+笔者在此章节<strong>不再</strong>赘述Array应如何处理.</p>
+</blockquote>
+<p>在之前的分析中已经获知了<a href="#别名分析">Alias信息</a>,
+该部分算法的实现依赖于别名信息.</p>
+<p>笔者在此给出两个算法思路抛砖引玉:</p>
+<h4 id="只考虑alias层">只考虑Alias层</h4>
+<p>这是个朴实但简单的想法:
+所有的<code>y = x.f</code>来自也只来自<code>x.f = z</code>,
+这句"废话"意味着什么?</p>
+<p><strong>意味着其实根本就不需要考虑<code>x.f</code>或者说<code>oi.f</code>的取值,
+如果想知道<code>y</code>可能的value值,
+只需要<code>meet</code>所有的<code>z</code>就可以了.</strong></p>
+<p>根据这个思路, 有:</p>
+<ul>
+<li><p>对于<code>LoadField</code>,
+找到所有与<code>x.f</code>相关的<code>x'.f = z</code>,
+其中<code>x'</code>是<code>x</code>的别名, <strong>meet</strong>
+<code>z</code>的<code>value</code>值.
+如果<code>y = meet(foreach(z))</code>有更新,
+将其后续<code>Node</code>加入<code>workList</code>.</p></li>
+<li><p>对于<code>StoreField</code>,
+找到所有与<code>x.f</code>相关的<code>y = x'.f</code>,
+其中<code>x'</code>是<code>x</code>的别名,
+将这些<code>StoreField</code>加入<code>workList</code>.</p></li>
+</ul>
+<p>这个算法的优点是实现简单, 但缺点是效率低,
+展现着独属于暴力的美学魅力.</p>
+<p>其关键在于如何维护<code>&lt;Field, Stmt&gt;</code>的结构,
+框架代码中有不少细节需要关注.</p>
+<h4 id="考虑mapobj-value">考虑<code>Map&lt;Obj, Value&gt;</code></h4>
+<p><code>x.f</code>中的<code>x</code>是<code>Pointer</code>,
+真正存储Value值的是<code>Obj</code>,
+因此可以考虑维护<code>&lt;Var, Obj&gt;</code>和<code>&lt;Obj.field, Value&gt;</code>两个Map,
+<code>Load</code>和<code>Store</code>均对Map进行操作.</p>
+<p>该思路避免了之前算法中的大量冗余计算(笔者自测跑完本地测试需要近30s),
+提高了效率, 但Map的维护较为复杂.</p>
+<p>具体处理<code>LoadField</code>和<code>StoreField</code>时,
+只需要将信息更新到<code>Map&lt;Obj.field, Value&gt;</code>即可,
+广播逻辑与之前相同.</p>
+<p>不过需要注意的是, 由于指针分析结果是流不敏感的,
+对于<code>Store</code>操作只使用<code>meet</code>而不是<code>kill</code>.</p>
+<blockquote>
+<p><strong>Question: Store语句应该在何时广播?</strong></p>
+<p>答案是当<code>outFact</code>改变的时候广播,
+或者具体来说,是<code>x.f = y</code>的<code>y</code>的value值改变时进行广播.</p>
+</blockquote>
+<h2 id="拾遗-tai-e-faq-you-need-to-know">拾遗: Tai-e FAQ You Need to
+Know</h2>
+<h3 id="cs-ci-pointer-analysis">CS &amp; CI Pointer Analysis</h3>
+<p>CallGraph建立的ICFG是没有上下文的,
+这和常量传播不关注上下文的行为一致.
+但对<code>Pointer</code>指向信息可以使用带上下文的分析结果以获取更高的精度,
+这与ICFG并不冲突.</p>
+<h3 id="ir">IR</h3>
+<p>IR的使用为本次实验做了大量简化, 你可能会疑惑,
+对于<code>x.f = y.g</code>这样的操作,
+上述算法框架可以覆盖到该语句吗?</p>
+<p>实际上, <code>x.f = y.g</code>在IR中会被转化为:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[<span class="number">21</span><span class="meta">@L16</span>] temp$<span class="number">8</span> = x.&lt;X: <span class="type">int</span> f&gt;;</span><br><span class="line">[<span class="number">22</span><span class="meta">@L16</span>] y.&lt;Y: <span class="type">int</span> g&gt; = temp$<span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<p>与之类似的, <code>Invoke</code>,
+<code>BinaryExp</code>也具有相同的特性.</p>
+<p>如果不确定某条语句在框架中如何表示,
+可以自己设计测试样例通过Assignment分析其结果.</p>
+<p>回到这次实验,
+可以简单认为<strong>所有<code>AssignStmt</code>的左值和右值中最多只有一个是Field/Array,
+另外一个是Var</strong>.</p>
+<h3
+id="intersolver与interconstpropagation">InterSolver与InterConstPropagation</h3>
+<p>InterConstPropagation的字段可以简单的通过参数的方式进行传递,
+但InterSolver与InterConstPropagation间该如何通信?</p>
+<p>注意到<code>InterConstantPropagation extends AbstractInterDataflowAnalysis</code>,
+其父类中含有字段<code>InterSolver solver</code>,
+可以通过<code>solver.xxx</code>实现通信.</p>
+<p>对于其中的<code>private</code>和<code>protected</code>字段,
+可以为其编写一个<code>public XType getX()</code>API提供访问接口.(如<code>result</code>,
+<code>worklist</code>等).</p>
+<h3 id="数据结构map">数据结构Map</h3>
+<p>本次实验中存在大量"一对多"的联系,
+可以考虑选取<code>MultiMap</code>进行维护.
+其中提供了不少相当便捷的API.</p>
+<h3 id="relevantstmt">relevantStmt</h3>
+<p>如果能把字段中的Var取出,
+可以使用其中的API<code>var.getStoreField()</code>等API方便的获取有关语句,
+不过对Static就没有太好的方法了,
+笔者采用的是遍历<code>icfg.getNodes()</code>.</p>
+<h3 id="fieldstmt-fieldaccesss-filedref-jfield">FieldStmt, FieldAccesss,
+FiledRef &amp; JField</h3>
+<p>Tai-e框架中的Field的处理要比Array复杂不少, 笔者在此做简要解释.</p>
+<ul>
+<li><p>JField的结构是<code>&lt;Type: FieldName&gt;</code>,
+可以使用<code>FieldStmt.getRef().resolve()</code>得到.
+当使用Stmt解析出JField进行比较时会获取更高的精度.
+(笔者因为这个卡了hidden test)</p></li>
+<li><p>如果想获取Field的Obj(即base部分),
+可以使用<code>FieldStmt.getFieldAccess().getBase()</code>.
+不过需要先转换为<code>InstanceFieldAccess</code>类型才能使用<code>getBase()</code>的API.</p>
+<blockquote>
+<p><strong>Tips:</strong> 笔者在此吐槽一句,
+为何关于Field的API都封装在了<code>tai-e-Assignemnt.jar</code>中而不是显式的给出,
+增大了如何处理Field的学习成本.</p>
+</blockquote></li>
+</ul>
+<h3 id="arraystmt">ArrayStmt</h3>
+<p>Array的结构相对简单一点,
+通过<code>getAccess()</code>就可以简单的<code>access.getBase/Index()</code>获取需要的信息.</p>
+<h2 id="总结">总结</h2>
+<p>恭喜挺过了本学期SPA的实验大魔王, 自己设计算法还是颇有难度的,
+接下来迎接较为轻松的A8吧. (^_^)</p>
 ]]></content>
       <categories>
         <category>实验记录-NJU静态分析</category>
