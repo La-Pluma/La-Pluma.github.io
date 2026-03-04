@@ -41,7 +41,7 @@ categories:
 
 ![pic2-2](BookNote-DesignPatterns-by-JieCheng-2/pic2-2.png)
 
-关于UML类图的介绍在Internet中有充足的资料和手册, 书中也有简单的规约介绍, 笔者在此不详细介绍UML图的语法和规约.(或者待专门出一期整理UML用法的栏目)
+关于UML类图的介绍在Internet中有充足的资料和手册, 书中也有简单的规约介绍, 笔者在此不详细介绍UML图的语法和规约.~~(或者待专门出一期整理UML用法的栏目)~~
 
 ## Chapter 1: 简单工厂模式(Simple Factory)
 
